@@ -1,32 +1,17 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Avatar from '../components/Avatar.astro';
 ---
 
 <Layout title="Homepage">
-  <nav>
-    <span>Introduction</span>
-    <span>Projects</span>
-    <span>Contact</span>
-  </nav>
-  <main>
-    <section>
-      <p>Hi! Hola! Cześć!</p>
-      <h1>My name is Paweł Mrowiec.</h1>
-      <h2>I'm programmer specialized in Web technologies.</h2>
-      <p>Currently: Freelance</p>
-    </section>
-    <blockquote>Tu na razie jest ściernisko, ale będzie San Francisco!</blockquote>
-  </main>
+  <section>
+    <p>Hi! Hola! Cześć!</p>
+    <h1>My name is Paweł Mrowiec.</h1>
+    <h2>I'm programmer passionate about Web technologies.</h2>
+    <p>Currently: Freelance</p>
+  </section>
+
+  <Avatar size="large" />
 </Layout>
 
-<style>
-  main {
-    margin: auto;
-    padding: 1.5rem;
-    max-width: 60ch;
-    display: flex;
-    flex-flow: column;
-    align-items: center;
-    justify-content: center;
-  }
-</style>
+<style></style>

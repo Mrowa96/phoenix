@@ -1,0 +1,28 @@
+---
+import { Picture } from '@astrojs/image/components';
+import meImage from '../assets/me.jpg';
+
+export type Props = {
+  size: 'small' | 'large';
+};
+
+const specificSize = Astro.props.size === 'large' ? 256 : 36;
+---
+
+<Picture
+  class="avatar"
+  src={meImage}
+  alt="Picture of Paweł Mrowiec"
+  widths={[512]}
+  width={specificSize}
+  height={specificSize}
+  aspectRatio="1:1"
+  decoding="auto"
+/>
+
+<style>
+  .avatar {
+    border-radius: 50%;
+    box-shadow: 0 0 10px -4px rgba(0, 0, 0, 0.5);
+  }
+</style>
