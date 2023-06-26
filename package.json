@@ -3,6 +3,7 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
+    "prepare": "husky install",
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build",
@@ -11,8 +12,9 @@
     "test": "vitest",
     "test:ci": "vitest --run",
     "check:fmt": "npx prettier -c \"*.{astro,js,ts,json,md,yml}\"",
-    "benchmark": "autocannon -c 100 -d 40 -p 10 http://localhost:3000",
-    "prepare": "husky install"
+    "check:astro": "astro check",
+    "check:types": "tsc --noEmit",
+    "benchmark": "autocannon -c 100 -d 40 -p 10 http://localhost:3000"
   },
   "dependencies": {
     "@astrojs/image": "0.17.0",

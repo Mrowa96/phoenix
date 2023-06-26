@@ -2,16 +2,6 @@ import isEmail from 'validator/lib/isEmail';
 import { SENT_STATUS_SEARCH_PARAMETER } from './consts';
 
 type ErrorsType = { name: string; email: string; message: string };
-// type SuccessfulResult = {
-//   isValid: true;
-//   errors: ErrorsType;
-//   values: { name: string; email: string; message: string };
-// };
-// type FailedResult = {
-//   isValid: false;
-//   errors: ErrorsType;
-//   values: { name?: string; email?: string; message?: string };
-// };
 
 export function validateContactForm(data: FormData) {
   const name = data.get('name')?.toString().trim() || '';
