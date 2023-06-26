@@ -1,17 +1,55 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import DefaultLayout from '../layouts/DefaultLayout/DefaultLayout.astro';
 import Avatar from '../components/Avatar.astro';
+import ContactForm from '../components/ContactForm/ContactForm.astro';
+// @ts-ignore-error
+import { validateContactForm, generateRedirectUrl } from '../components/ContactForm/utils';
+import { Mailer } from '../services/Mailer';
+
+let validationResult: ReturnType<typeof validateContactForm> | undefined;
+
+if (Astro.request.method === 'POST') {
+  try {
+    validationResult = validateContactForm(await Astro.request.formData());
+
+    if (validationResult.isValid) {
+      await new Mailer().sendMail(
+        validationResult.values.name,
+        validationResult.values.email,
+        'Message from personal website',
+        validationResult.values.message,
+      );
+
+      // TODO Integrate server side captcha?
+
+      return Astro.redirect(generateRedirectUrl(Astro.request.url, true), 302);
+    } else {
+      // Allow to pass error down and render corresponding view
+    }
+  } catch (error) {
+    if (error instanceof Error) {
+      // TODO Integrate with sentry or something
+      console.error(error.message);
+    }
+
+    return Astro.redirect(generateRedirectUrl(Astro.request.url, false), 302);
+  }
+}
 ---
 
-<Layout title="Homepage">
-  <section>
+<DefaultLayout title="Homepage">
+  <section id="introduction-section">
     <p>Hi! Hola! Cześć!</p>
     <h1>My name is Paweł Mrowiec.</h1>
     <h2>I'm programmer passionate about Web technologies.</h2>
     <p>Currently: Freelance</p>
+
+    <Avatar size="large" />
   </section>
 
-  <Avatar size="large" />
-</Layout>
+  <section id="contact-section">
+    <h1>Contact</h1>
 
-<style></style>
+    <ContactForm validationResult={validationResult} />
+  </section>
+</DefaultLayout>
