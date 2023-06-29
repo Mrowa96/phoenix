@@ -3,10 +3,12 @@ import Avatar from '../../components/Avatar.astro';
 ---
 
 <header id="main-header">
-  <a href=`${Astro.url.origin}` class="homepage-link">
-    <Avatar size="small" />
-    <span>Paweł Mrowiec</span>
-  </a>
+  <div>
+    <a href=`${Astro.url.origin}` class="homepage-link">
+      <Avatar size="small" />
+      <span>Paweł Mrowiec</span>
+    </a>
+  </div>
 
   <nav id="main-nav">
     <a href=`#introduction` data-section-id="introduction-section">Introduction</a>
