@@ -36,6 +36,8 @@ if (Astro.request.method === 'POST') {
     return Astro.redirect(generateRedirectUrl(Astro.request.url, false), 302);
   }
 }
+
+export const prerender = false;
 ---
 
 <DefaultLayout title="Homepage">
