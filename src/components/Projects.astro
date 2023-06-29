@@ -1,0 +1,19 @@
+---
+import { Picture } from '@astrojs/image/components';
+import { getCollection } from 'astro:content';
+
+const projects = await getCollection('projects');
+---
+
+<ul>
+  {
+    projects.map(project => (
+      <li>
+        <h3>{project.data.title}</h3>
+        <Picture src={import('../assets/projects/pilot_1.png')} widths={[500]} width={500} alt="x" />
+
+        <a href={`/projects/${project.slug}`}>Learn more</a>
+      </li>
+    ))
+  }
+</ul>

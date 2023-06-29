@@ -1,9 +1,10 @@
 import { defineConfig } from 'astro/config';
 import image from '@astrojs/image';
 import node from '@astrojs/node';
+import mdx from '@astrojs/mdx';
 
 export default defineConfig({
-  output: 'server',
+  output: 'hybrid',
   adapter: node({
     mode: 'standaone',
   }),
@@ -11,5 +12,13 @@ export default defineConfig({
     image({
       serviceEntryPoint: '@astrojs/image/sharp',
     }),
+    mdx(),
   ],
+  markdown: {
+    gfm: true,
+    smartypants: false,
+    shikiConfig: {
+      theme: 'light-plus',
+    },
+  },
 });

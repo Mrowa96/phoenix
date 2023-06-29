@@ -1,0 +1,18 @@
+---
+layout: ../../layouts/DefaultLayout/DefaultLayout.astro
+title: Pilot
+company: WP
+url: https://pilot.wp.pl/tv/
+---
+
+import { Picture } from '@astrojs/image/components';
+import pilot1 from '../../assets/projects/pilot_1.png';
+
+# {frontmatter.title}
+
+<Picture src={pilot1} alt="Pilot main photo" widths={[500]} width={500} />
+
+Some markdown syntax
+
+- test
+- test2
