@@ -1,7 +1,11 @@
 ---
 import DefaultLayout from './DefaultLayout/DefaultLayout.astro';
+import Container from '../components/Container.astro';
 ---
 
-<DefaultLayout size="narrow" title="?">
-  <slot />
+{/* TODO Handle title */}
+<DefaultLayout title="?">
+  <Container size="narrow">
+    <slot />
+  </Container>
 </DefaultLayout>

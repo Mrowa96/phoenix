@@ -1,19 +1,84 @@
 ---
 import { Picture } from '@astrojs/image/components';
 import { getCollection } from 'astro:content';
+import Container from './Container.astro';
 
 const projects = await getCollection('projects');
 ---
 
-<ul>
-  {
-    projects.map(project => (
-      <li>
-        <h3>{project.data.title}</h3>
-        <Picture src={import('../assets/projects/pilot_1.png')} widths={[500]} width={500} alt="x" />
+<>
+  <svg style="width: 100%; display:block;" height="70" xmlns="http://www.w3.org/2000/svg">
+    <path
+      d="M 450 0 C 275 0 0 52 0 50 V 70 H 1440 V 50 C 1440 50 1320 28 1245 27 C 1100 19 1020 55 875 50 C 710 46 620 0 450 0 Z"
+      style="fill: var(--c-primary);"></path>
+  </svg>
 
-        <a href={`/projects/${project.slug}`}>Learn more</a>
-      </li>
-    ))
+  <section id="projects-section">
+    <Container size="standard">
+      <h1>Projects</h1>
+
+      <ul class="projects">
+        {
+          projects.map(project => (
+            <li class="project">
+              <Picture
+                class="image"
+                src={import('../assets/projects/pilot_1.png')}
+                widths={[768]}
+                width={768}
+                alt="x"
+              />
+
+              <div class="details">
+                <h3>{project.data.title}</h3>
+                <p>{project.data.lead}</p>
+                <a href={`/projects/${project.slug}`}>Learn more</a>
+              </div>
+            </li>
+          ))
+        }
+      </ul>
+    </Container>
+  </section>
+</>
+
+<style>
+  section {
+    background-color: var(--c-primary);
+    padding-bottom: 2rem;
   }
-</ul>
+
+  h1 {
+    font-size: 2rem;
+    margin: 0 0 2rem;
+  }
+
+  .projects {
+    padding: 0;
+    margin: 0;
+  }
+
+  .project {
+    list-style: none;
+    display: flex;
+  }
+
+  .image {
+    border-radius: 8px;
+  }
+
+  .details {
+    padding: 1rem 2rem;
+
+    & h3 {
+      font-size: 1.5rem;
+    }
+
+    & a {
+      text-decoration: none;
+      color: #000;
+      cursor: pointer;
+      font-weight: 500;
+    }
+  }
+</style>

@@ -4,11 +4,9 @@ import Footer from './Footer.astro';
 
 export interface Props {
   title: string;
-  size?: 'default' | 'narrow';
 }
 
-const { title, size = 'default' } = Astro.props;
-const contentSize = size === 'default' ? '1200px' : '768px';
+const { title } = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -39,9 +37,13 @@ const contentSize = size === 'default' ? '1200px' : '768px';
     <Footer />
   </body>
 </html>
-<style define:vars={{ contentSize }} is:global>
+<style is:global>
   :root {
     --default-layout-padding: 1rem;
+
+    --c-primary: #99ddcc;
+    --c-secondary: #1eafed;
+    --c-teritiary: #612570;
   }
 
   *,
@@ -66,7 +68,6 @@ const contentSize = size === 'default' ? '1200px' : '768px';
   }
 
   main {
-    max-width: var(--contentSize);
     width: 100%;
     margin: auto;
   }

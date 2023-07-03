@@ -1,0 +1,30 @@
+---
+import Container from '../components/Container.astro';
+import Avatar from '../components/Avatar.astro';
+---
+
+<Container size="standard">
+  <section id="introduction-section">
+    <div>
+      <p class="text">Hi! Hola! Cześć!</p>
+      <h1>My name is Paweł Mrowiec.</h1>
+      <h2>I'm programmer passionated about Web technologies.</h2>
+      <p class="text">Currently: <i>Freelance</i></p>
+    </div>
+
+    <Avatar size="large" />
+  </section>
+</Container>
+
+<style>
+  section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 50vh;
+  }
+
+  .text {
+    font-size: 18px;
+  }
+</style>

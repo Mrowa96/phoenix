@@ -1,11 +1,11 @@
 ---
-import Avatar from '../../components/Avatar.astro';
+// import Avatar from '../../components/Avatar.astro';
 ---
 
 <header id="main-header">
   <div>
     <a href=`${Astro.url.origin}` class="homepage-link">
-      <Avatar size="small" />
+      <!-- <Avatar size="small" /> -->
       <span>Paweł Mrowiec</span>
     </a>
   </div>
@@ -17,7 +17,7 @@ import Avatar from '../../components/Avatar.astro';
     <a href=`#contact` data-section-id="contact-section">Contact</a>
   </nav>
 
-  <div class="links">links</div>
+  <div class="links">&nbsp;</div>
 </header>
 
 <style>
@@ -28,7 +28,7 @@ import Avatar from '../../components/Avatar.astro';
     position: sticky;
     top: 0;
     background: white;
-    box-shadow: 0px -25px 10px 20px rgba(0, 0, 0, 0.5);
+    /* box-shadow: 0px -25px 10px 20px rgba(0, 0, 0, 0.5); */
 
     & .homepage-link {
       text-decoration: none;
@@ -47,6 +47,7 @@ import Avatar from '../../components/Avatar.astro';
         text-decoration: none;
         color: #000;
         padding: 0.5rem;
+        font-weight: 500;
 
         &:hover {
           text-decoration: underline;

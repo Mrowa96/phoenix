@@ -1,0 +1,24 @@
+---
+export type Props = {
+  size: 'full' | 'standard' | 'narrow';
+};
+
+const { size } = Astro.props;
+const widthMap: Record<typeof size, string> = {
+  full: '100%',
+  standard: '1024px',
+  narrow: '768px',
+};
+const width = widthMap[size];
+---
+
+<div>
+  <slot />
+</div>
+
+<style define:vars={{ width }}>
+  div {
+    width: var(--width);
+    margin: 0 auto;
+  }
+</style>
