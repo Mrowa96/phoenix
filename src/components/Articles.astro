@@ -1,31 +1,50 @@
 ---
 import { getCollection } from 'astro:content';
-import Container from './Container.astro';
+import WaveSection from './WaveSection.astro';
 
 const articles = await getCollection('articles');
 ---
 
-<section id="articles-section">
-  <Container size="standard">
-    <h1>Articles</h1>
-
-    <ul>
-      {
-        articles.map(article => (
-          <li>
-            <h3>{article.data.title}</h3>
-            <p>{article.data.lead}</p>
-            <a href={`/articles/${article.slug},${article.data.id}`}>Read more</a>
-          </li>
-        ))
-      }
-    </ul>
-  </Container>
-</section>
+<WaveSection id="articles" title="Articles" color="secondary" oppositeColor="primary">
+  <ul class="articles">
+    {
+      articles.map(article => (
+        <li class="article">
+          <h3 class="heading">{article.data.title}</h3>
+          <p class="lead">{article.data.lead}</p>
+          <a class="link" href={`/articles/${article.slug},${article.data.id}`}>
+            Read more
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</WaveSection>
 
 <style>
-  section {
-    /* background-color: var(--c-secondary); */
-    padding: var(--default-layout-padding);
+  .articles {
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+
+    & .article {
+      list-style: none;
+      background: white;
+      padding: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 0 10px -4px rgba(0, 0, 0, 0.5);
+
+      & .heading {
+        margin: 0 0 1rem;
+      }
+
+      & .link {
+        text-decoration: none;
+        color: black;
+        font-weight: 500;
+      }
+    }
   }
 </style>

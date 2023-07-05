@@ -1,52 +1,30 @@
 ---
 import { Picture } from '@astrojs/image/components';
 import { getCollection } from 'astro:content';
-import Container from './Container.astro';
+import WaveSection from './WaveSection.astro';
 
 const projects = await getCollection('projects');
 ---
 
-<>
-  <svg style="width: 100%; display:block;" height="70" xmlns="http://www.w3.org/2000/svg">
-    <path
-      d="M 450 0 C 275 0 0 52 0 50 V 70 H 1440 V 50 C 1440 50 1320 28 1245 27 C 1100 19 1020 55 875 50 C 710 46 620 0 450 0 Z"
-      style="fill: var(--c-primary);"></path>
-  </svg>
+<WaveSection id="projects" title="Projects" color="primary">
+  <ul class="projects">
+    {
+      projects.map(project => (
+        <li class="project">
+          <Picture class="image" src={import('../assets/projects/pilot_1.png')} widths={[700, 1400]} alt="x" />
 
-  <section id="projects-section">
-    <Container size="standard">
-      <h1>Projects</h1>
-
-      <ul class="projects">
-        {
-          projects.map(project => (
-            <li class="project">
-              <Picture class="image" src={import('../assets/projects/pilot_1.png')} widths={[700, 1400]} alt="x" />
-
-              <div class="details">
-                <h3>{project.data.title}</h3>
-                <p>{project.data.lead}</p>
-                <a href={`/projects/${project.slug}`}>Learn more</a>
-              </div>
-            </li>
-          ))
-        }
-      </ul>
-    </Container>
-  </section>
-</>
+          <div class="details">
+            <h3>{project.data.title}</h3>
+            <p>{project.data.lead}</p>
+            <a href={`/projects/${project.slug}`}>Learn more</a>
+          </div>
+        </li>
+      ))
+    }
+  </ul>
+</WaveSection>
 
 <style>
-  section {
-    background-color: var(--c-primary);
-    padding-bottom: 2rem;
-  }
-
-  h1 {
-    font-size: 2rem;
-    margin: 0 0 2rem;
-  }
-
   .projects {
     padding: 0;
     margin: 0;

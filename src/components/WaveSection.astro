@@ -1,0 +1,61 @@
+---
+import Container from './Container.astro';
+
+export type Props = {
+  id: string;
+  title: string;
+  color: 'primary' | 'secondary' | 'tertiary';
+  oppositeColor?: 'primary' | 'secondary' | 'tertiary';
+};
+
+const { id, title, color, oppositeColor } = Astro.props;
+---
+
+<section id={`${id}-section`} class="wave-section">
+  <svg class="wave" xmlns="http://www.w3.org/2000/svg">
+    <path
+      d="M 450 0 C 275 0 0 52 0 50 V 70 H 1440 V 50 C 1440 50 1320 28 1245 27 C 1100 19 1020 55 875 50 C 710 46 620 0 450 0 Z"
+    ></path>
+  </svg>
+
+  <div class="container-wrapper">
+    <Container size="standard">
+      <h1>{title}</h1>
+
+      <slot />
+    </Container>
+  </div>
+</section>
+
+<style
+  define:vars={{
+    'section-color': `var(--c-${color})`,
+    'opposite-color': `var(--c-${oppositeColor})`,
+  }}
+>
+  .wave-section {
+    --wave-height: 70px;
+
+    & .wave {
+      display: block;
+      width: 100%;
+      height: var(--wave-height);
+      background: var(--opposite-color);
+
+      & path {
+        fill: var(--section-color);
+      }
+    }
+
+    & .container-wrapper {
+      width: 100%;
+      background-color: var(--section-color);
+      padding-bottom: 3rem;
+    }
+
+    & h1 {
+      font-size: 2rem;
+      margin: 0 0 2rem;
+    }
+  }
+</style>

@@ -1,0 +1,13 @@
+---
+import ContactForm from './ContactForm/ContactForm.astro';
+import type { validateContactForm } from './ContactForm/utils';
+import WaveSection from './WaveSection.astro';
+
+export type Props = {
+  validationResult: ReturnType<typeof validateContactForm> | undefined;
+};
+---
+
+<WaveSection id="contact" title="Contact" color="tertiary" oppositeColor="secondary">
+  <ContactForm validationResult={Astro.props.validationResult} />
+</WaveSection>
