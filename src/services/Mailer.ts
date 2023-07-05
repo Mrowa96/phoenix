@@ -1,21 +1,22 @@
 import { createTransport } from 'nodemailer';
+import { parameters } from '../config';
 
 export class Mailer {
   async sendMail(name: string, email: string, subject: string, message: string) {
     const transporter = createTransport({
-      host: import.meta.env.MAILER_HOST,
-      port: parseInt(import.meta.env.MAILER_PORT),
+      host: parameters.mailer.host,
+      port: parameters.mailer.port,
       auth: {
-        user: import.meta.env.MAILER_USER,
-        pass: import.meta.env.MAILER_PASSWORD,
+        user: parameters.mailer.user,
+        pass: parameters.mailer.password,
       },
       secure: false,
     });
 
     return await transporter.sendMail({
       to: {
-        address: import.meta.env.MAILER_RECEIVER_MAIL,
-        name: 'Paweł Mrowiec',
+        address: parameters.mailer.receiverMail,
+        name: parameters.personalInfo.name,
       },
       from: {
         address: email,

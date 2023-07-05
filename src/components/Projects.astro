@@ -21,13 +21,7 @@ const projects = await getCollection('projects');
         {
           projects.map(project => (
             <li class="project">
-              <Picture
-                class="image"
-                src={import('../assets/projects/pilot_1.png')}
-                widths={[768]}
-                width={768}
-                alt="x"
-              />
+              <Picture class="image" src={import('../assets/projects/pilot_1.png')} widths={[700, 1400]} alt="x" />
 
               <div class="details">
                 <h3>{project.data.title}</h3>
@@ -65,6 +59,8 @@ const projects = await getCollection('projects');
 
   .image {
     border-radius: 8px;
+    aspect-ratio: 16/9;
+    width: 768px;
   }
 
   .details {
