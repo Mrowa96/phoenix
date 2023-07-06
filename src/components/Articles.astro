@@ -10,10 +10,15 @@ const articles = await getCollection('articles');
     {
       articles.map(article => (
         <li class="article">
-          <h3 class="heading">{article.data.title}</h3>
-          <p class="lead">{article.data.lead}</p>
-          <a class="link" href={`/articles/${article.slug},${article.data.id}`}>
-            Read more
+          <a class="link-wrapper" href={`/articles/${article.slug},${article.data.id}`}>
+            <h3 class="heading">{article.data.title}</h3>
+            <p class="lead">{article.data.lead}</p>
+            <time class="created-at">
+              {article.data.createdAt.toLocaleString('en-GB', {
+                dateStyle: 'long',
+                timeStyle: 'short',
+              })}
+            </time>
           </a>
         </li>
       ))
@@ -27,23 +32,31 @@ const articles = await getCollection('articles');
     padding: 0;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 1rem;
+    gap: 2rem;
 
     & .article {
       list-style: none;
-      background: white;
-      padding: 1rem;
+      background: var(--c-white);
       border-radius: 8px;
       box-shadow: 0 0 10px -4px rgba(0, 0, 0, 0.5);
 
-      & .heading {
-        margin: 0 0 1rem;
-      }
-
-      & .link {
+      & .link-wrapper {
+        display: block;
         text-decoration: none;
-        color: black;
-        font-weight: 500;
+        color: var(--c-black);
+        padding: 1.5rem;
+
+        & .heading {
+          font-size: 1.2rem;
+          font-weight: 500;
+          margin: 0 0 1rem;
+        }
+
+        & .created-at {
+          font-size: 0.8rem;
+          display: block;
+          text-align: right;
+        }
       }
     }
   }
