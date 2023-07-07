@@ -1,0 +1,7 @@
+.husky
+.git
+.DS_Store
+.vscode
+.gitignore
+dist
+node_modules

@@ -6,7 +6,7 @@ import mdx from '@astrojs/mdx';
 export default defineConfig({
   output: 'hybrid',
   adapter: node({
-    mode: 'standaone',
+    mode: 'standalone',
   }),
   integrations: [
     image({
