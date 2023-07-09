@@ -1,6 +1,8 @@
 FROM node:18.16.1-alpine3.18 AS build
 
 WORKDIR /app
+ENV HOST=0.0.0.0
+ENV PORT=3000
 
 COPY ["./package.json", "./package-lock.json", "./"]
 
@@ -18,8 +20,9 @@ ENV NODE_ENV=production
 ENV HOST=0.0.0.0
 ENV PORT=3000
 
-COPY --from=build /app/dist /app/dist
-COPY --from=build /app/node_modules /app/node_modules
+COPY --from=build ["/app/package.json","/app/package-lock.json", "./"]
+COPY --from=build "/app/dist" "/app/dist"
+COPY --from=build "/app/node_modules" "/app/node_modules"
 
 RUN npm prune
 
