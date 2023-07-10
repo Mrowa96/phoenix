@@ -10,7 +10,7 @@ import { parameters } from '../../config';
 
 <header id="main-header">
   <div class="homepage-link-wrapper">
-    <a href=`${Astro.url.origin}` class="homepage-link" title="Go to homepage">
+    <a href="/" class="homepage-link" title="Go to homepage">
       <Image src={homeSvg} alt="Home icon" />
     </a>
   </div>
@@ -22,16 +22,39 @@ import { parameters } from '../../config';
   </nav>
 
   <div class="external-links">
-    <a class="link" href={`mailto:${parameters.personalInfo.mailAddress}`} title="Ask me any question!">
+    <a
+      class="link"
+      href={`mailto:${parameters.personalInfo.mailAddress}`}
+      title="Ask me any question!"
+      rel="noopener noreferrer"
+    >
       <Image src={mailSvg} alt="Mail icon" />
     </a>
-    <a class="link" href={parameters.socials.githubUrl} target="_blank" title="Check out my code">
+    <a
+      class="link"
+      href={parameters.socials.githubUrl}
+      target="_blank"
+      title="Check out my code"
+      rel="noopener noreferrer"
+    >
       <Image src={githubSvg} alt="Github icon" />
     </a>
-    <a class="link" href={parameters.socials.twitterUrl} target="_blank" title="Follow me on Twitter">
+    <a
+      class="link"
+      href={parameters.socials.twitterUrl}
+      target="_blank"
+      title="Follow me on Twitter"
+      rel="noopener noreferrer"
+    >
       <Image src={twitterSvg} alt="Twitter icon" />
     </a>
-    <a class="link" href={parameters.socials.linkedinUrl} target="_blank" title="Get in touch on LinkedIn">
+    <a
+      class="link"
+      href={parameters.socials.linkedinUrl}
+      target="_blank"
+      title="Get in touch on LinkedIn"
+      rel="noopener noreferrer"
+    >
       <Image src={linkedinSvg} alt="LinkedIn icon" />
     </a>
   </div>

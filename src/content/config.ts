@@ -6,6 +6,7 @@ const projectsCollection = defineCollection({
     title: z.string(),
     company: z.string(),
     lead: z.string(),
+    tags: z.array(z.string()),
     url: z.string().url().optional(),
   }),
 });

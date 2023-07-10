@@ -1,7 +1,8 @@
 ---
-import { Picture } from '@astrojs/image/components';
+import { Picture, Image } from '@astrojs/image/components';
 import { getCollection } from 'astro:content';
 import WaveSection from './WaveSection.astro';
+import externalLinkLightSvg from '../assets/icons/externalLinkLight.svg';
 
 const projects = await getCollection('projects');
 ---
@@ -11,12 +12,30 @@ const projects = await getCollection('projects');
     {
       projects.map(project => (
         <li class="project">
-          <Picture class="image" src={import('../assets/projects/pilot_1.png')} widths={[700, 1400]} alt="x" />
+          <Picture class="image" src={import('../assets/projects/pilot_1.png')} widths={[700, 1400]} alt="TODO" />
 
           <div class="details">
-            <h3>{project.data.title}</h3>
-            <p>{project.data.lead}</p>
-            <a href={`/projects/${project.slug}`}>Learn more</a>
+            <div class="heading">
+              <h3 class="title">{project.data.title}</h3>
+              {project.data.url && (
+                <a
+                  class="external-link"
+                  href={project.data.url}
+                  target="_blank"
+                  title={`Open ${project.data.title}`}
+                  rel="noopener noreferrer"
+                >
+                  Open app
+                  <Image src={externalLinkLightSvg} alt="External link icon" />
+                </a>
+              )}
+            </div>
+            <h4 class="lead">{project.data.lead}</h4>
+            <ul class="tags">
+              {project.data.tags.map(tag => (
+                <li class="tag">{tag}</li>
+              ))}
+            </ul>
           </div>
         </li>
       ))
@@ -36,23 +55,60 @@ const projects = await getCollection('projects');
   }
 
   .image {
-    border-radius: 8px;
+    border-radius: var(--default-border-radius);
     aspect-ratio: 16/9;
     width: 768px;
+    box-shadow: 0 0 4px 0px rgba(0, 0, 0, 0.5);
   }
 
   .details {
     padding: 1rem 2rem;
 
-    & h3 {
-      font-size: 1.5rem;
+    & .heading {
+      display: flex;
+      align-items: center;
+      margin: 1rem 0;
+      gap: 0.75rem;
+
+      & .title {
+        font-size: 1.6rem;
+        margin: 0;
+      }
+
+      & .external-link {
+        display: flex;
+        align-items: center;
+        background: var(--c-primary-darker);
+        border-radius: var(--default-border-radius);
+        padding: 0.2rem 0.4rem;
+        text-decoration: none;
+        font-weight: 500;
+        color: var(--c-white);
+        gap: 0.25rem;
+      }
     }
 
-    & a {
-      text-decoration: none;
-      color: var(--c-black);
-      cursor: pointer;
-      font-weight: 500;
+    & .lead {
+      font-size: 1rem;
+      margin: 1rem 0;
+    }
+
+    & .tags {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+
+      & .tag {
+        list-style: none;
+        padding: 0.2rem 0.4rem;
+        border-radius: var(--default-border-radius);
+        background: var(--c-white);
+        font-size: 0.9rem;
+        font-weight: 500;
+      }
     }
   }
 </style>

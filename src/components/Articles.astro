@@ -10,7 +10,11 @@ const articles = await getCollection('articles');
     {
       articles.map(article => (
         <li class="article">
-          <a class="link-wrapper" href={`/articles/${article.slug},${article.data.id}`}>
+          <a
+            class="link-wrapper"
+            href={`/articles/${article.slug},${article.data.id}`}
+            title={`Read more about "${article.data.title}"`}
+          >
             <h3 class="heading">{article.data.title}</h3>
             <p class="lead">{article.data.lead}</p>
             <time class="created-at">
@@ -36,15 +40,16 @@ const articles = await getCollection('articles');
 
     & .article {
       list-style: none;
-      background: var(--c-white);
-      border-radius: 8px;
-      box-shadow: 0 0 10px -4px rgba(0, 0, 0, 0.5);
 
       & .link-wrapper {
         display: block;
         text-decoration: none;
         color: var(--c-black);
         padding: 1.5rem;
+        background: var(--c-white);
+        box-shadow: 0 0 10px -4px rgba(0, 0, 0, 0.5);
+        border-radius: var(--default-border-radius);
+        transition: transform 0.3s ease;
 
         & .heading {
           font-size: 1.2rem;
@@ -56,6 +61,10 @@ const articles = await getCollection('articles');
           font-size: 0.8rem;
           display: block;
           text-align: right;
+        }
+
+        &:hover {
+          transform: translateY(-2px);
         }
       }
     }
