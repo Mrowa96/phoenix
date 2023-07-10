@@ -1,5 +1,3 @@
-import { getEnv } from './helpers/getEnv';
-
 export const parameters = {
   socials: {
     githubUrl: 'https://github.com/Mrowa96',
@@ -8,6 +6,6 @@ export const parameters = {
   },
   personalInfo: {
     name: 'Paweł Mrowiec',
-    mailAddress: getEnv('PUBLIC_MAIL_ADDRESS'),
+    mailAddress: 'ask@pawel-mrowiec.dev',
   },
 };
