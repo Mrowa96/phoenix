@@ -7,5 +7,3 @@
 ## Local code checking
 
 Run `npx husky install` to install husky which will check code on pre-commit hook
-
-Test
