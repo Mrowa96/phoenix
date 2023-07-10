@@ -4,12 +4,13 @@ import homeSvg from '../../assets/icons/home.svg';
 import twitterSvg from '../../assets/icons/twitter.svg';
 import linkedinSvg from '../../assets/icons/linkedin.svg';
 import githubSvg from '../../assets/icons/github.svg';
+import mailSvg from '../../assets/icons/mail.svg';
 import { parameters } from '../../config';
 ---
 
 <header id="main-header">
   <div class="homepage-link-wrapper">
-    <a href=`${Astro.url.origin}` class="homepage-link">
+    <a href=`${Astro.url.origin}` class="homepage-link" title="Go to homepage">
       <Image src={homeSvg} alt="Home icon" />
     </a>
   </div>
@@ -18,18 +19,19 @@ import { parameters } from '../../config';
     <a class="link" href=`/#introduction` data-section-id="introduction-section">Introduction</a>
     <a class="link" href=`/#projects` data-section-id="projects-section">Projects</a>
     <a class="link" href=`/#articles` data-section-id="articles-section">Articles</a>
-    <a class="link" href=`/#contact` data-section-id="contact-section">Contact</a>
   </nav>
 
   <div class="external-links">
-    <a class="link" href={parameters.socials.githubUrl} target="_blank">
+    <a class="link" href={`mailto:${parameters.personalInfo.mailAddress}`} title="Ask me any question!">
+      <Image src={mailSvg} alt="Mail icon" />
+    </a>
+    <a class="link" href={parameters.socials.githubUrl} target="_blank" title="Check out my code">
       <Image src={githubSvg} alt="Github icon" />
     </a>
-    <a class="link" href={parameters.socials.twitterUrl} target="_blank">
+    <a class="link" href={parameters.socials.twitterUrl} target="_blank" title="Follow me on Twitter">
       <Image src={twitterSvg} alt="Twitter icon" />
     </a>
-
-    <a class="link" href={parameters.socials.linkedinUrl} target="_blank">
+    <a class="link" href={parameters.socials.linkedinUrl} target="_blank" title="Get in touch on LinkedIn">
       <Image src={linkedinSvg} alt="LinkedIn icon" />
     </a>
   </div>

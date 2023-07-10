@@ -1,13 +1,9 @@
 import { defineConfig } from 'astro/config';
 import image from '@astrojs/image';
-import node from '@astrojs/node';
 import mdx from '@astrojs/mdx';
 
 export default defineConfig({
-  output: 'hybrid',
-  adapter: node({
-    mode: 'standalone',
-  }),
+  output: 'static',
   integrations: [
     image({
       serviceEntryPoint: '@astrojs/image/sharp',

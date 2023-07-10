@@ -1,49 +1,12 @@
 ---
 import DefaultLayout from '../layouts/DefaultLayout/DefaultLayout.astro';
-// @ts-ignore-error
-import { validateContactForm, generateRedirectUrl } from '../components/ContactForm/utils';
-import { Mailer } from '../services/Mailer';
 import Introduction from '../components/Introduction.astro';
 import Projects from '../components/Projects.astro';
 import Articles from '../components/Articles.astro';
-import Contact from '../components/Contact.astro';
-
-let validationResult: ReturnType<typeof validateContactForm> | undefined;
-
-if (Astro.request.method === 'POST') {
-  try {
-    validationResult = validateContactForm(await Astro.request.formData());
-
-    if (validationResult.isValid) {
-      await new Mailer().sendMail(
-        validationResult.values.name,
-        validationResult.values.email,
-        'Message from personal website',
-        validationResult.values.message,
-      );
-
-      // TODO Integrate server side captcha?
-
-      return Astro.redirect(generateRedirectUrl(Astro.request.url, true), 302);
-    } else {
-      // Allow to pass error down and render corresponding view
-    }
-  } catch (error) {
-    if (error instanceof Error) {
-      // TODO Integrate with sentry or something
-      console.error(error.message);
-    }
-
-    return Astro.redirect(generateRedirectUrl(Astro.request.url, false), 302);
-  }
-}
-
-export const prerender = false;
 ---
 
 <DefaultLayout title="Homepage">
   <Introduction />
   <Projects />
   <Articles />
-  <Contact validationResult={validationResult} />
 </DefaultLayout>

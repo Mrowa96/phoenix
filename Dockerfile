@@ -1,7 +1,7 @@
 FROM node:18.16.1-alpine3.18 AS build
 
 WORKDIR /app
-ENV HOST=0.0.0.0
+
 ENV PORT=3000
 
 COPY ["./package.json", "./package-lock.json", "./"]
@@ -12,20 +12,13 @@ COPY . .
 
 RUN npm run build
 
-FROM node:18.16.1-alpine3.18 AS runtime
+FROM nginx:1.25.1-alpine AS runtime
 
-WORKDIR /app
-
-ENV NODE_ENV=production
-ENV HOST=0.0.0.0
 ENV PORT=3000
 
-COPY --from=build ["/app/package.json","/app/package-lock.json", "./"]
-COPY --from=build "/app/dist" "/app/dist"
-COPY --from=build "/app/node_modules" "/app/node_modules"
+COPY ./docker/nginx.conf /etc/nginx/conf.d/template
+COPY --from=build /app/dist /usr/share/nginx/html
 
-RUN npm prune
+CMD sh -c "envsubst '\$PORT' < /etc/nginx/conf.d/template > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"
 
 EXPOSE 3000
-
-CMD ["node", "./dist/server/entry.mjs"]
