@@ -1,0 +1,22 @@
+---
+company: TVN
+url: https://tvn24.pl/go
+title: TVN24Go
+lead: Online VOD platform with LIVE functionality based on custom made CMS.
+tags: [Next.js, AWS]
+mainPhotoName: tvn24go
+mainPhotoAlt: Image of detail page from TVN24Go app
+---
+
+import { Picture } from '@astrojs/image/components';
+
+# {frontmatter.title}
+
+<Picture
+  src={import(`../../assets/projects/${frontmatter.mainPhotoName}.png`)}
+  alt={frontmatter.mainPhotoAlt}
+  widths={[500]}
+  width={500}
+/>
+
+## {frontmatter.lead}
