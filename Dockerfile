@@ -3,6 +3,7 @@ FROM node:18.16.1-alpine3.18 AS build
 WORKDIR /app
 
 ENV PORT=3000
+ARG SITE
 
 COPY ["./package.json", "./package-lock.json", "./"]
 
