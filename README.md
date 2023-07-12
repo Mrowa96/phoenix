@@ -18,9 +18,11 @@ To import something dynamically file extension have to be provided. See more [he
 
 - mobile styles
 - no js mode for projects
-- twitter meta tags for articles
 - reimplement header
 - articles styling
 - work on a11y for projects
 - seo issues
 - replace favicon
+- custom 404 page https://docs.astro.build/en/core-concepts/astro-pages/
+- add redirect from old articles
+- basic e2e tests

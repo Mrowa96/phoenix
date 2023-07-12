@@ -4,10 +4,11 @@ title: Cookies - an immortal piece of Web
 lead: Cookies are still a great idea for many use cases, so let me reintroduce them.
 createdAt: 2021-01-21T23:04:00.000Z
 updatedAt: 2021-01-21T23:04:00.000Z
-layout: ../../layouts/ArticleLayout.astro
 ---
 
-# {frontmatter.title}
+import ArticleHeading from '../../components/ArticleHeading.astro';
+
+<ArticleHeading title={frontmatter.title} />
 
 After _localStorage_ was implemented in major browsers, I often saw that it was used as a replacement of plain old cookies. Even though developers had to handle e.g. expiration implementation on they own.
 

@@ -12,7 +12,7 @@ const articles = await getCollection('articles');
         <li class="article">
           <a
             class="link-wrapper"
-            href={`/articles/${article.slug},${article.data.id}`}
+            href={`/articles/${article.slug},${article.data.id}/`}
             title={`Read more about "${article.data.title}"`}
           >
             <h3 class="heading">{article.data.title}</h3>

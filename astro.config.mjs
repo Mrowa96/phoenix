@@ -4,6 +4,7 @@ import mdx from '@astrojs/mdx';
 
 export default defineConfig({
   output: 'static',
+  trailingSlash: 'always',
   integrations: [
     image({
       serviceEntryPoint: '@astrojs/image/sharp',

@@ -1,10 +1,16 @@
 ---
 import DefaultLayout from './DefaultLayout/DefaultLayout.astro';
 import Container from '../components/Container.astro';
+
+type Props = {
+  title: string;
+  lead: string;
+};
+
+const { title, lead } = Astro.props;
 ---
 
-{/* TODO Handle title */}
-<DefaultLayout title="?">
+<DefaultLayout title={title} meta={{ twitter: { title, description: lead } }}>
   <Container size="narrow">
     <slot />
   </Container>
