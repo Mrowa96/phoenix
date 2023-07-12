@@ -2,7 +2,11 @@
 
 ## Requirements
 
-- Node.js and npm versions are defined in `./package.json`
+1. Node.js + npm. Versions are defined in `./package.json`
+2. `.env.local` file with predefined values
+   ```
+   SITE=http://localhost:3000
+   ```
 
 ## Troubleshooting
 

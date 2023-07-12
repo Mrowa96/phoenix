@@ -13,7 +13,7 @@ const { title } = Astro.props;
   <h1>{title}</h1>
   <a
     class="link"
-    href={`https://twitter.com/intent/tweet?url=${Astro.url.href}&text=${title}`}
+    href={`https://twitter.com/intent/tweet?url=${Astro.site}&text=${title}`}
     rel="nofollow noopener noreferrer"
     target="_blank"
   >

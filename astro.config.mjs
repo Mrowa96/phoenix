@@ -1,10 +1,16 @@
 import { defineConfig } from 'astro/config';
 import image from '@astrojs/image';
 import mdx from '@astrojs/mdx';
+import dotenv from 'dotenv';
+
+dotenv.config({
+  path: './.env.local',
+});
 
 export default defineConfig({
   output: 'static',
-  trailingSlash: 'always',
+  trailingSlash: 'never',
+  site: process.env.SITE,
   integrations: [
     image({
       serviceEntryPoint: '@astrojs/image/sharp',
