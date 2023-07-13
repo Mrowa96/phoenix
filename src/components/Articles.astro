@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import WaveSection from './WaveSection.astro';
+import { generateUrl } from '../helpers/generateUrl';
 
 const articles = await getCollection('articles');
 ---
@@ -12,7 +13,7 @@ const articles = await getCollection('articles');
         <li class="article">
           <a
             class="link-wrapper"
-            href={`/articles/${article.slug},${article.data.id}`}
+            href={generateUrl(`/articles/${article},${article.data.id}`, Astro)}
             title={`Read more about "${article.data.title}"`}
           >
             <h3 class="heading">{article.data.title}</h3>
