@@ -1,6 +1,6 @@
 ---
 import DefaultLayout from './DefaultLayout/DefaultLayout.astro';
-import Container from '../components/Container.astro';
+import NarrowContainer from '../components/Containers/NarrowContainer.astro';
 
 type Props = {
   title: string;
@@ -11,7 +11,7 @@ const { title, lead } = Astro.props;
 ---
 
 <DefaultLayout title={title} meta={{ twitter: { title, description: lead } }}>
-  <Container size="narrow">
+  <NarrowContainer>
     <slot />
-  </Container>
+  </NarrowContainer>
 </DefaultLayout>

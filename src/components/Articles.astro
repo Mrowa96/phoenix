@@ -13,11 +13,11 @@ const articles = await getCollection('articles');
         <li class="article">
           <a
             class="link-wrapper"
-            href={generateUrl(`/articles/${article},${article.data.id}`, Astro)}
+            href={generateUrl(`/articles/${article.slug},${article.data.id}`, Astro)}
             title={`Read more about "${article.data.title}"`}
           >
-            <h3 class="heading">{article.data.title}</h3>
-            <p class="lead">{article.data.lead}</p>
+            <h3 class="heading line-clamp-1">{article.data.title}</h3>
+            <p class="lead line-clamp-2">{article.data.lead}</p>
             <time class="created-at">
               {article.data.createdAt.toLocaleString('en-GB', {
                 dateStyle: 'long',
@@ -36,8 +36,12 @@ const articles = await getCollection('articles');
     margin: 0;
     padding: 0;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     gap: 2rem;
+
+    @media (width >= 768px) {
+      grid-template-columns: 1fr 1fr;
+    }
 
     & .article {
       list-style: none;
@@ -46,16 +50,25 @@ const articles = await getCollection('articles');
         display: block;
         text-decoration: none;
         color: var(--c-black);
-        padding: 1.5rem;
+        padding: 1rem;
         background: var(--c-white);
         box-shadow: 0 0 10px -4px rgba(0, 0, 0, 0.5);
         border-radius: var(--default-border-radius);
         transition: transform 0.3s ease;
 
+        @media (width >= 1024px) {
+          padding: 1.5rem;
+        }
+
         & .heading {
           font-size: 1.2rem;
           font-weight: 500;
           margin: 0 0 1rem;
+        }
+
+        & .lead {
+          font-size: 1rem;
+          height: calc(1rem * var(--default-line-height) * 2);
         }
 
         & .created-at {

@@ -1,0 +1,17 @@
+<div class="narrow-container">
+  <slot />
+</div>
+
+<style>
+  .narrow-container {
+    --container-width: 768px;
+
+    @media (width <= 768px) {
+      --container-width: 100%;
+    }
+
+    margin: 0 auto;
+    position: relative;
+    width: var(--container-width);
+  }
+</style>

@@ -58,9 +58,15 @@ const { title, meta } = Astro.props;
   </body>
 </html>
 <style is:global>
+  /* Viewport breakpoints (Mobile first!) */
+  /* Small: width < 768px */
+  /* Medium: 768px <= width < 1024px */
+  /* Medium: width >= 1024px */
+
   :root {
     --default-layout-padding-x: 1.5rem;
     --default-border-radius: 8px;
+    --default-line-height: 1.2;
 
     --c-primary: #99ddcc;
     --c-primary-darker: #438c7a;
@@ -86,7 +92,7 @@ const { title, meta } = Astro.props;
     box-sizing: border-box;
     font-size: 16px;
     font-weight: 400;
-    line-height: 1.2;
+    line-height: var(--default-line-height);
     margin: 0;
     padding: 0;
   }
@@ -103,5 +109,20 @@ const { title, meta } = Astro.props;
 
   img {
     vertical-align: bottom;
+  }
+
+  .line-clamp-1,
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .line-clamp-1 {
+    -webkit-line-clamp: 1;
+  }
+
+  .line-clamp-2 {
+    -webkit-line-clamp: 2;
   }
 </style>

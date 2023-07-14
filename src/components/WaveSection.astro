@@ -1,5 +1,5 @@
 ---
-import Container from './Container.astro';
+import Container from './Containers/Container.astro';
 
 type Props = {
   id: string;
@@ -19,8 +19,13 @@ const { id, title, color, oppositeColor } = Astro.props;
   </svg>
 
   <div class="container-wrapper">
-    <Container size="standard">
-      <h1 class="title">{title}</h1>
+    <Container>
+      <div class="heading">
+        <h1 class="title">{title}</h1>
+        <div class="heading-slot-content">
+          <slot name="heading-slot" />
+        </div>
+      </div>
 
       <slot />
     </Container>
@@ -30,7 +35,7 @@ const { id, title, color, oppositeColor } = Astro.props;
 <style
   define:vars={{
     'section-color': `var(--c-${color})`,
-    'opposite-color': `var(--c-${oppositeColor})`,
+    'opposite-color': oppositeColor ? `var(--c-${oppositeColor})` : undefined,
   }}
 >
   .wave-section {
@@ -53,9 +58,23 @@ const { id, title, color, oppositeColor } = Astro.props;
       padding-bottom: 3rem;
     }
 
-    & .title {
-      font-size: 2rem;
+    & .heading {
       margin: 0 0 1.5rem;
+      display: flex;
+      gap: 1rem;
+
+      & .title {
+        display: inline-flex;
+        font-size: 2rem;
+        margin: 0;
+      }
+
+      & .heading-slot-content {
+        display: inline-flex;
+        gap: 0.5rem;
+        justify-content: center;
+        align-items: center;
+      }
     }
   }
 </style>

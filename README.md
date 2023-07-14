@@ -28,5 +28,5 @@ To import something dynamically file extension have to be provided. See more [he
 - seo issues
 - replace favicon
 - custom 404 page https://docs.astro.build/en/core-concepts/astro-pages/
-- add redirect from old articles
 - basic e2e tests
+- analize if rem is good unit to use for offsets etc

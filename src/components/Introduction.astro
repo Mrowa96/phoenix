@@ -1,14 +1,14 @@
 ---
-import Container from '../components/Container.astro';
+import Container from '../components/Containers/Container.astro';
 import Avatar from '../components/Avatar.astro';
 ---
 
-<Container size="standard">
+<Container>
   <section id="introduction-section">
-    <div>
+    <div class="text-wrapper">
       <p class="text">Hi! Hola! Cześć!</p>
-      <h1>My name is Paweł Mrowiec.</h1>
-      <h2>I'm programmer passionate about Web technologies.</h2>
+      <h1 class="heading-text">My name is Paweł Mrowiec.</h1>
+      <h2 class="heading-text">I'm programmer passionate about Web technologies.</h2>
     </div>
 
     <Avatar size="large" />
@@ -16,14 +16,27 @@ import Avatar from '../components/Avatar.astro';
 </Container>
 
 <style>
-  section {
+  #introduction-section {
     display: flex;
+    flex-flow: column-reverse;
     justify-content: space-between;
     align-items: center;
     min-height: 50vh;
+    padding: 1rem;
+
+    @media (width >= 768px) {
+      flex-flow: row;
+    }
   }
 
-  .text {
-    font-size: 1rem;
+  .text-wrapper {
+    & .text {
+      font-size: 1rem;
+      margin: 1rem 0;
+    }
+
+    & .heading-text {
+      margin: 1rem 0;
+    }
   }
 </style>

@@ -1,0 +1,22 @@
+<div class="container">
+  <slot />
+</div>
+
+<style>
+  .container {
+    --container-width: 100%;
+
+    @media (768px <= width < 1024pxrt) {
+      --container-width: 768px;
+    }
+
+    @media (width >= 1024px) {
+      --container-width: 1024px;
+    }
+
+    margin: 0 auto;
+    padding: 0 var(--default-layout-padding-x);
+    position: relative;
+    width: var(--container-width);
+  }
+</style>
