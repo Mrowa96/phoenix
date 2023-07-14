@@ -1,0 +1,37 @@
+---
+import DefaultLayout from '../layouts/DefaultLayout/DefaultLayout.astro';
+---
+
+<DefaultLayout title="Page not found" disableFooter disableHeader>
+  <div class="wrapper">
+    <p class="message">Oops! Page not found.</p>
+    <p class="message">Try again from <a class="link" href="/">Homepage</a></p>
+  </div>
+</DefaultLayout>
+
+<style>
+  .wrapper {
+    margin: 0;
+    padding: 1rem;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+
+    & .message {
+      font-size: 2rem;
+      text-align: center;
+      margin: 0.5rem 0;
+
+      @media (width >= 768px) {
+        font-size: 3rem;
+      }
+    }
+
+    & .link {
+      text-decoration: underline;
+      color: var(--c-black);
+    }
+  }
+</style>

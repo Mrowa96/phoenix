@@ -27,6 +27,5 @@ To import something dynamically file extension have to be provided. See more [he
 - work on a11y for projects
 - seo issues
 - replace favicon
-- custom 404 page https://docs.astro.build/en/core-concepts/astro-pages/
 - basic e2e tests
 - analize if rem is good unit to use for offsets etc

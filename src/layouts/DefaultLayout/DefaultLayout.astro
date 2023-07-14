@@ -10,9 +10,11 @@ export interface Props {
       description: string;
     };
   };
+  disableHeader?: boolean;
+  disableFooter?: boolean;
 }
 
-const { title, meta } = Astro.props;
+const { title, meta, disableHeader, disableFooter } = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -48,13 +50,13 @@ const { title, meta } = Astro.props;
     }
   </head>
   <body>
-    <Header />
+    {!disableHeader && <Header />}
 
     <main>
       <slot />
     </main>
 
-    <Footer />
+    {!disableFooter && <Footer />}
   </body>
 </html>
 <style is:global>
@@ -95,11 +97,13 @@ const { title, meta } = Astro.props;
     line-height: var(--default-line-height);
     margin: 0;
     padding: 0;
+    height: 100%;
   }
 
   body {
     margin: 0;
     padding: 0;
+    min-height: 100%;
   }
 
   main {
