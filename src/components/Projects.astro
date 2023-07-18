@@ -18,7 +18,7 @@ const projects = await getCollection('projects');
   </button>
 
   <div class="wrapper">
-    <div class="swiper">
+    <div class="swiper swiper-horizontal swiper-css-mode">
       <ul class="projects swiper-wrapper">
         {
           projects.map((project, index) => (
@@ -63,7 +63,7 @@ const projects = await getCollection('projects');
       </ul>
     </div>
 
-    <div class="swiper-scrollbar"></div>
+    <div class="swiper-scrollbar swiper-scrollbar-horizontal"></div>
   </div>
 </WaveSection>
 
@@ -174,10 +174,14 @@ const projects = await getCollection('projects');
     margin: 0;
     width: auto;
     height: auto;
-    display: inline-flex;
+    display: none;
 
     &::after {
       content: '';
+    }
+
+    &[data-ready='1'] {
+      display: inline-flex;
     }
   }
 
@@ -195,6 +199,13 @@ const projects = await getCollection('projects');
   import 'swiper/css/navigation';
   import 'swiper/css/scrollbar';
 
+  const prevButtonElement = document.querySelector<HTMLElement>('.swiper-button-prev');
+  const nextButtonElement = document.querySelector<HTMLElement>('.swiper-button-next');
+
+  if (!prevButtonElement || !nextButtonElement) {
+    throw new Error('Projects has to have buttons defined.');
+  }
+
   new Swiper('.swiper', {
     modules: [Navigation, Scrollbar, Keyboard],
     cssMode: true,
@@ -202,8 +213,8 @@ const projects = await getCollection('projects');
     simulateTouch: false,
     navigation: {
       enabled: true,
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev',
+      prevEl: prevButtonElement,
+      nextEl: nextButtonElement,
     },
     scrollbar: {
       enabled: true,
@@ -211,6 +222,11 @@ const projects = await getCollection('projects');
     },
     keyboard: {
       enabled: true,
+    },
+    on: {
+      init() {
+        prevButtonElement.dataset.ready = nextButtonElement.dataset.ready = '1';
+      },
     },
   });
 </script>
