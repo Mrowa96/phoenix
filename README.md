@@ -20,8 +20,6 @@ To import something dynamically file extension have to be provided. See more [he
 
 ## TODO
 
-- mobile styles
-- no js mode for projects
 - reimplement header
 - articles styling
 - work on a11y for projects

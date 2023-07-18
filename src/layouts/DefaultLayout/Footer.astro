@@ -1,13 +1,39 @@
-<footer>Copyright © {new Date().getFullYear()} by Paweł Mrowiec. Do zobaczenia!</footer>
+---
+export type Props = {
+  background?: 'primary-dark' | 'secondary-dark' | undefined;
+};
 
-<style>
-  footer {
-    width: 100%;
-    background: var(--c-secondary);
-    color: var(--c-black);
-    padding: 0.5rem var(--default-layout-padding-x);
+const { background } = Astro.props;
+---
+
+<footer id="main-footer">
+  <span class="copyright">
+    Copyright © {new Date().getFullYear()} by Paweł Mrowiec.
+  </span>
+  <span class="goodbye">Do zobaczenia!</span>
+</footer>
+
+<style
+  define:vars={{
+    'footer-background': `var(--c-${background ?? 'grey'})`,
+    'footer-color': `var(--c-${background ? 'white' : 'black'})`,
+  }}
+>
+  #main-footer {
+    background: var(--footer-background);
+    color: var(--footer-color);
     font-size: 1rem;
     font-weight: 500;
     text-align: center;
+    padding: 0.5rem var(--default-layout-padding-x);
+
+    & .copyright,
+    & .goodbye {
+      display: block;
+
+      @media (width >= 768px) {
+        display: inline-flex;
+      }
+    }
   }
 </style>

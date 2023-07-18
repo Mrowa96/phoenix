@@ -1,6 +1,6 @@
 ---
 import Header from './Header.astro';
-import Footer from './Footer.astro';
+import Footer, { type Props as FooterProps } from './Footer.astro';
 
 export interface Props {
   title: string;
@@ -12,9 +12,10 @@ export interface Props {
   };
   disableHeader?: boolean;
   disableFooter?: boolean;
+  footerBackground?: FooterProps['background'];
 }
 
-const { title, meta, disableHeader, disableFooter } = Astro.props;
+const { title, meta, disableHeader, disableFooter, footerBackground } = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -56,7 +57,7 @@ const { title, meta, disableHeader, disableFooter } = Astro.props;
       <slot />
     </main>
 
-    {!disableFooter && <Footer />}
+    {!disableFooter && <Footer background={footerBackground} />}
   </body>
 </html>
 <style is:global>
@@ -71,10 +72,11 @@ const { title, meta, disableHeader, disableFooter } = Astro.props;
     --default-line-height: 1.2;
 
     --c-primary: #99ddcc;
-    --c-primary-darker: #438c7a;
+    --c-primary-dark: #438c7a;
     --c-secondary: #ff5da2;
-    --c-tertiary: #b643cd;
+    --c-secondary-dark: #d1377a;
     --c-white: #fff;
+    --c-grey: #f0f0f0;
     --c-black: #000;
 
     --z-index-0: 0;
@@ -104,6 +106,7 @@ const { title, meta, disableHeader, disableFooter } = Astro.props;
     margin: 0;
     padding: 0;
     min-height: 100%;
+    min-width: 320px;
   }
 
   main {

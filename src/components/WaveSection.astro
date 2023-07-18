@@ -4,8 +4,8 @@ import Container from './Containers/Container.astro';
 type Props = {
   id: string;
   title: string;
-  color: 'primary' | 'secondary' | 'tertiary';
-  oppositeColor?: 'primary' | 'secondary' | 'tertiary';
+  color: 'primary' | 'secondary';
+  oppositeColor?: 'primary' | 'secondary';
 };
 
 const { id, title, color, oppositeColor } = Astro.props;

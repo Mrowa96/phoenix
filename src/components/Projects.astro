@@ -87,8 +87,13 @@ const projects = await getCollection('projects');
   }
 
   .project-content {
-    display: grid;
-    grid-template-columns: repeat(10, 1fr);
+    display: flex;
+    flex-flow: column;
+
+    @media (width >= 768px) {
+      display: grid;
+      grid-template-columns: repeat(10, 1fr);
+    }
 
     & .image-wrapper {
       grid-column: 1 / 8;
@@ -102,7 +107,7 @@ const projects = await getCollection('projects');
     }
 
     & .details {
-      padding: 1rem 2rem;
+      padding: 1rem 1.5rem;
       grid-column: 8 / 11;
 
       @media (width < 1024px) {
@@ -123,7 +128,7 @@ const projects = await getCollection('projects');
         & .external-link {
           display: flex;
           align-items: center;
-          background: var(--c-primary-darker);
+          background: var(--c-primary-dark);
           border-radius: var(--default-border-radius);
           padding: 0.2rem 0.4rem;
           text-decoration: none;
@@ -144,7 +149,6 @@ const projects = await getCollection('projects');
         padding: 0;
         display: flex;
         flex-wrap: wrap;
-        justify-content: center;
         align-items: center;
         gap: 1rem;
 
