@@ -21,22 +21,34 @@ import Avatar from '../components/Avatar.astro';
     flex-flow: column-reverse;
     justify-content: space-between;
     align-items: center;
-    gap: 1rem;
-    min-height: 50vh;
+    padding: 1rem 0;
 
     @media (width >= 768px) {
       flex-flow: row;
-    }
-  }
-
-  .text-wrapper {
-    & .text {
-      font-size: 1rem;
-      margin: 1rem 0;
+      gap: 1rem;
+      min-height: 50vh;
     }
 
-    & .heading-text {
-      margin: 1rem 0;
+    & .text-wrapper {
+      text-align: center;
+
+      @media (width >= 768px) {
+        text-align: initial;
+      }
+
+      & .text {
+        font-size: 1.1rem;
+        margin: 1rem 0;
+      }
+
+      & .heading-text {
+        margin: 1rem 0;
+        font-size: 1.3rem;
+
+        @media (width >= 768px) {
+          font-size: 1.5rem;
+        }
+      }
     }
   }
 </style>

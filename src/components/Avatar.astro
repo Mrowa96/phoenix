@@ -7,16 +7,22 @@ import meImage from '../assets/me.jpg';
   class="avatar"
   src={meImage}
   alt="Picture of Paweł Mrowiec"
-  widths={[512]}
-  sizes="512w"
+  widths={[256, 512]}
+  sizes="(max-width: 768px) 256px, 512px"
   formats={['avif', 'webp', 'jpg']}
-  width={256}
-  height={256}
 />
 
 <style>
   .avatar {
     border-radius: 50%;
     box-shadow: 0 0 10px -4px rgba(0, 0, 0, 0.5);
+    display: block;
+    width: 128px;
+    height: 128px;
+
+    @media (width >= 768px) {
+      width: 256px;
+      height: 256px;
+    }
   }
 </style>
