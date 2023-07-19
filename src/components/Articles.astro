@@ -18,7 +18,7 @@ const articles = await getCollection('articles');
           >
             <h3 class="heading line-clamp-1">{article.data.title}</h3>
             <p class="lead line-clamp-2">{article.data.lead}</p>
-            <time class="created-at">
+            <time class="created-at" datetime={article.data.createdAt.toISOString()}>
               {article.data.createdAt.toLocaleString('en-GB', {
                 dateStyle: 'long',
                 timeStyle: 'short',

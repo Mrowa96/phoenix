@@ -12,6 +12,16 @@ const { title, lead } = Astro.props;
 
 <DefaultLayout title={title} meta={{ twitter: { title, description: lead } }}>
   <NarrowContainer>
-    <slot />
+    <article class="article-content">
+      <slot />
+    </article>
   </NarrowContainer>
 </DefaultLayout>
+
+<style is:global>
+  .article-content {
+    & a {
+      color: var(--c-black);
+    }
+  }
+</style>

@@ -28,7 +28,9 @@ const projects = await getCollection('projects');
                   <Picture
                     class="image"
                     src={import(`../assets/projects/${project.data.mainPhotoName}.png`)}
-                    widths={[700, 1400]}
+                    widths={[720, 1440]}
+                    sizes="(max-width: 768px) 100vw, 1440w"
+                    formats={['avif', 'webp', 'jpg']}
                     alt={project.data.mainPhotoAlt}
                     loading={index === 0 ? 'eager' : 'lazy'}
                   />

@@ -20,10 +20,10 @@ To import something dynamically file extension have to be provided. See more [he
 
 ## TODO
 
-- reimplement header
-- articles styling
 - work on a11y for projects
 - seo issues
 - replace favicon
 - basic e2e tests
 - analize if rem is good unit to use for offsets etc
+- fix reader mode on homepage
+- try again to use custom-media feature for breakpoints

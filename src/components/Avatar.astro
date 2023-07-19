@@ -1,12 +1,6 @@
 ---
 import { Picture } from '@astrojs/image/components';
 import meImage from '../assets/me.jpg';
-
-type Props = {
-  size: 'small' | 'large';
-};
-
-const specificSize = Astro.props.size === 'large' ? 256 : 36;
 ---
 
 <Picture
@@ -14,10 +8,10 @@ const specificSize = Astro.props.size === 'large' ? 256 : 36;
   src={meImage}
   alt="Picture of Paweł Mrowiec"
   widths={[512]}
-  width={specificSize}
-  height={specificSize}
-  aspectRatio="1:1"
-  decoding="auto"
+  sizes="512w"
+  formats={['avif', 'webp', 'jpg']}
+  width={256}
+  height={256}
 />
 
 <style>

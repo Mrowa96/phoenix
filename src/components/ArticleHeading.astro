@@ -10,12 +10,13 @@ const { title } = Astro.props;
 ---
 
 <div class="article-heading">
-  <h1>{title}</h1>
+  <h1 class="title">{title}</h1>
   <a
     class="link"
     href={`https://twitter.com/intent/tweet?url=${Astro.url.href}&text=${title}`}
     rel="nofollow noopener noreferrer"
     target="_blank"
+    hidden
   >
     Share
     <Image class="icon" src={twitterSvg} alt="Twitter icon" />
@@ -26,23 +27,28 @@ const { title } = Astro.props;
   .article-heading {
     align-items: center;
     display: flex;
-    flex-flow: row nowrap;
+    flex-flow: row wrap;
     justify-content: space-between;
-    margin: 0 0 15px;
-  }
+    margin: 1rem 0;
+    gap: 1rem;
 
-  .link {
-    text-decoration: none;
-    color: var(--c-black);
-    font-weight: 500;
-    border-radius: var(--default-border-radius);
-    border: 2px solid var(--c-black);
-    display: flex;
-    align-items: center;
-    padding: 0.2rem 0.5rem;
+    & .title {
+      margin: 0;
+    }
 
-    & .icon {
-      padding: 0 0 0 0.5rem;
+    & .link {
+      text-decoration: none;
+      color: var(--c-black);
+      font-weight: 500;
+      border-radius: var(--default-border-radius);
+      border: 2px solid var(--c-black);
+      display: flex;
+      align-items: center;
+      padding: 0.2rem 0.5rem;
+
+      & .icon {
+        padding: 0 0 0 0.5rem;
+      }
     }
   }
 </style>

@@ -10,6 +10,7 @@ dotenv.config({
 export default defineConfig({
   output: 'static',
   trailingSlash: 'never',
+  compressHTML: true,
   site: process.env.SITE,
   integrations: [
     image({
@@ -21,7 +22,7 @@ export default defineConfig({
     gfm: true,
     smartypants: false,
     shikiConfig: {
-      theme: 'light-plus',
+      theme: 'vitesse-light',
     },
   },
 });
