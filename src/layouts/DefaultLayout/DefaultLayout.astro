@@ -28,10 +28,25 @@ const { title, meta, disableHeader, disableFooter, footerBackground } = Astro.pr
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="format-detection" content="telephone=no" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500&display=swap" rel="stylesheet" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preload" href="/fonts/quicksand-v30-latin-ext-regular.woff2" />
+    <link rel="preload" href="/fonts/quicksand-v30-latin-ext-500.woff2" />
+    <style is:inline>
+      @font-face {
+        font-display: swap;
+        font-family: 'Quicksand';
+        font-style: normal;
+        font-weight: 400;
+        src: url('/fonts/quicksand-v30-latin-ext-regular.woff2') format('woff2');
+      }
+      @font-face {
+        font-display: swap;
+        font-family: 'Quicksand';
+        font-style: normal;
+        font-weight: 500;
+        src: url('/fonts/quicksand-v30-latin-ext-500.woff2') format('woff2');
+      }
+    </style>
 
     {/* SEO related tags */}
     <meta name="description" content="Paweł Mrowiec's portfolio, articles and contact information." />
@@ -60,6 +75,7 @@ const { title, meta, disableHeader, disableFooter, footerBackground } = Astro.pr
     {!disableFooter && <Footer background={footerBackground} />}
   </body>
 </html>
+
 <style is:global>
   /* Viewport breakpoints (Mobile first!) */
   /* Small: width < 768px */

@@ -37,7 +37,7 @@ const projects = await getCollection('projects');
                 </div>
                 <div class="details">
                   <div class="heading">
-                    <h3 class="title">{project.data.title}</h3>
+                    <h2 class="title">{project.data.title}</h2>
                     {project.data.url && (
                       <a
                         class="external-link"
@@ -51,7 +51,7 @@ const projects = await getCollection('projects');
                       </a>
                     )}
                   </div>
-                  <h4 class="lead">{project.data.lead}</h4>
+                  <h3 class="lead">{project.data.lead}</h3>
                   <ul class="tags">
                     {project.data.tags.map(tag => (
                       <li class="tag">{tag}</li>
