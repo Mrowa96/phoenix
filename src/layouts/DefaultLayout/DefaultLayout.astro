@@ -28,9 +28,9 @@ const { title, meta, disableHeader, disableFooter, footerBackground } = Astro.pr
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="format-detection" content="telephone=no" />
 
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="preload" href="/fonts/quicksand-v30-latin-ext-regular.woff2" />
-    <link rel="preload" href="/fonts/quicksand-v30-latin-ext-500.woff2" />
+    <link rel="preload" href="/fonts/quicksand-v30-latin-ext-regular.woff2" as="font" />
+    <link rel="preload" href="/fonts/quicksand-v30-latin-ext-500.woff2" as="font" />
+
     <style is:inline>
       @font-face {
         font-display: swap;
@@ -48,7 +48,6 @@ const { title, meta, disableHeader, disableFooter, footerBackground } = Astro.pr
       }
     </style>
 
-    {/* SEO related tags */}
     <meta name="description" content="Paweł Mrowiec's portfolio, articles and contact information." />
     <meta
       name="keywords"
@@ -64,6 +63,13 @@ const { title, meta, disableHeader, disableFooter, footerBackground } = Astro.pr
         </>
       )
     }
+
+    <link rel="icon" href="/favicon-32.png" sizes="32x32" />
+    <link rel="icon" href="/favicon-48.png" sizes="48x48" />
+    <link rel="icon" href="/favicon-96.png" sizes="96x96" />
+    <link rel="icon" href="/favicon-180.png" sizes="180x180" />
+    <link rel="icon" href="/favicon-192.png" sizes="192x192" />
+    <link rel="icon" href="/favicon.ico" />
   </head>
   <body>
     {!disableHeader && <Header />}
