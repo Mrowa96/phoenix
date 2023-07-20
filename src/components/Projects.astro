@@ -92,7 +92,7 @@ const projects = await getCollection('projects');
     display: flex;
     flex-flow: column;
 
-    @media (width >= 768px) {
+    @media (--above-medium-viewport) {
       display: grid;
       grid-template-columns: repeat(10, 1fr);
     }

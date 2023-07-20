@@ -23,7 +23,7 @@ import Avatar from '../components/Avatar.astro';
     align-items: center;
     padding: 1rem 0;
 
-    @media (width >= 768px) {
+    @media (--above-medium-viewport) {
       flex-flow: row;
       gap: 1rem;
       min-height: 50vh;
@@ -32,7 +32,7 @@ import Avatar from '../components/Avatar.astro';
     & .text-wrapper {
       text-align: center;
 
-      @media (width >= 768px) {
+      @media (--above-medium-viewport) {
         text-align: initial;
       }
 
@@ -45,7 +45,7 @@ import Avatar from '../components/Avatar.astro';
         margin: 1rem 0;
         font-size: 1.3rem;
 
-        @media (width >= 768px) {
+        @media (--above-medium-viewport) {
           font-size: 1.5rem;
         }
       }

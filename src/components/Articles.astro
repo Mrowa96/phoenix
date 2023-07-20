@@ -39,7 +39,7 @@ const articles = await getCollection('articles');
     grid-template-columns: 1fr;
     gap: 2rem;
 
-    @media (width >= 768px) {
+    @media (--above-medium-viewport) {
       grid-template-columns: 1fr 1fr;
     }
 
