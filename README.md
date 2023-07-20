@@ -26,4 +26,3 @@ To import something dynamically file extension have to be provided. See more [he
 - basic e2e tests
 - analize if rem is good unit to use for offsets etc
 - fix reader mode on homepage
-- fix issue with scrolling to homepage section

@@ -16,9 +16,9 @@ import { parameters } from '../../config';
   </div>
 
   <nav id="main-nav">
-    <a class="link" href=`/#introduction` data-section-id="introduction-section">Introduction</a>
-    <a class="link" href=`/#projects` data-section-id="projects-section">Projects</a>
-    <a class="link" href=`/#articles` data-section-id="articles-section">Articles</a>
+    <a class="link" href=`/#introduction` data-section-id="introduction">Introduction</a>
+    <a class="link" href=`/#projects` data-section-id="projects">Projects</a>
+    <a class="link" href=`/#articles` data-section-id="articles">Articles</a>
   </nav>
 
   <div class="external-links">
@@ -137,19 +137,24 @@ import { parameters } from '../../config';
 
   const mainHeader = document.querySelector<HTMLElement>('#main-header');
 
-  enableSmoothScroll();
   enableStickyStyles();
 
+  if (location.pathname === '/') {
+    enableSmoothScroll();
+  }
+
   function enableSmoothScroll() {
-    const mainNavLinks = document.querySelectorAll<HTMLAnchorElement>('#main-nav a[data-section-id]');
+    const sectionLinks = document.querySelectorAll<HTMLAnchorElement>('#main-nav a[data-section-id]');
     const sectionScrollOffset = 10;
 
     if (!mainHeader) {
       throw Error('Unable to find main header element.');
     }
 
-    for (const link of mainNavLinks) {
-      link.addEventListener('click', function onMainNavLinkClick() {
+    for (const link of sectionLinks) {
+      link.addEventListener('click', function onMainNavLinkClick(event) {
+        event.preventDefault();
+
         if (!link.dataset.sectionId) {
           throw Error('Attribute [data-section-id] cannot be empty.');
         }
@@ -160,8 +165,7 @@ import { parameters } from '../../config';
           throw new Error(`Section with id "${link.dataset.sectionId}" doesn't exist.`);
         }
 
-        // TODO Integrate with sentry or something
-
+        history.pushState(null, '', `#${link.dataset.sectionId}`);
         window.scrollTo({
           top: section.offsetTop - mainHeader.offsetHeight - sectionScrollOffset,
           behavior: 'smooth',
