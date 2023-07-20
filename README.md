@@ -27,4 +27,3 @@ To import something dynamically file extension have to be provided. See more [he
 - analize if rem is good unit to use for offsets etc
 - fix reader mode on homepage
 - fix issue with scrolling to homepage section
-- fix scrollbar on safari

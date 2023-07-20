@@ -18,7 +18,7 @@ const projects = await getCollection('projects');
   </button>
 
   <div class="wrapper">
-    <div class="swiper swiper-horizontal swiper-css-mode">
+    <div class="swiper swiper-horizontal">
       <ul class="projects swiper-wrapper">
         {
           projects.map((project, index) => (
@@ -71,9 +71,6 @@ const projects = await getCollection('projects');
 
 <style>
   .wrapper {
-    --swiper-navigation-sides-offset: -50px;
-    --swiper-scrollbar-sides-offset: 0;
-    --swiper-scrollbar-bottom: -20px;
     --swiper-scrollbar-bg-color: rgba(255, 255, 255, 0.2);
     --swiper-scrollbar-drag-bg-color: rgba(255, 255, 255, 0.8);
   }
@@ -192,6 +189,17 @@ const projects = await getCollection('projects');
     }
   }
 
+  .swiper:not(.swiper-initialized) {
+    & .swiper-wrapper {
+      scroll-snap-type: x mandatory;
+      overflow: auto;
+
+      & .swiper-slide {
+        scroll-snap-align: start start;
+      }
+    }
+  }
+
   .swiper-scrollbar.swiper-scrollbar-horizontal {
     position: static;
     z-index: var(--z-index-1);
@@ -215,9 +223,8 @@ const projects = await getCollection('projects');
 
   new Swiper('.swiper', {
     modules: [Navigation, Scrollbar, Keyboard],
-    cssMode: true,
     spaceBetween: 100,
-    simulateTouch: false,
+    simulateTouch: true,
     navigation: {
       enabled: true,
       prevEl: prevButtonElement,
