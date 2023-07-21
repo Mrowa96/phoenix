@@ -1,4 +1,6 @@
 ---
+import Container from '../../components/Containers/Container.astro';
+
 export type Props = {
   background?: 'primary-dark' | 'secondary-dark' | undefined;
 };
@@ -7,10 +9,12 @@ const { background } = Astro.props;
 ---
 
 <footer id="main-footer">
-  <span class="copyright">
-    Copyright © {new Date().getFullYear()} by Paweł Mrowiec.
-  </span>
-  <span class="goodbye">Do zobaczenia!</span>
+  <Container>
+    <span class="copyright">
+      Copyright © {new Date().getFullYear()} by Paweł Mrowiec.
+    </span>
+    <span class="goodbye">Do zobaczenia!</span>
+  </Container>
 </footer>
 
 <style
