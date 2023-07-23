@@ -11,6 +11,8 @@ RUN npm i
 
 COPY . .
 
+RUN npm run check:all
+RUN npm run test:ci
 RUN npm run build
 
 FROM nginx:1.25.1-alpine AS runtime
