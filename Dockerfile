@@ -5,12 +5,9 @@ WORKDIR /app
 ENV PORT=3000
 ARG SITE
 
-COPY ["./package.json", "./package-lock.json", "./"]
-
-RUN npm i
-
 COPY . .
 
+RUN npm i
 RUN npm run build
 RUN npm run check:all
 RUN npm run test:ci
