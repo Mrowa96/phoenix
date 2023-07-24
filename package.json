@@ -18,6 +18,7 @@
     "check:fmt": "npx prettier -c \"*.{astro,js,ts,json,md,yml}\"",
     "check:astro": "astro check",
     "check:types": "tsc --noEmit",
+    "check:all": "concurrently \"npm:check:fmt\" \"npm:check:astro\" \"npm:check:types\"",
     "benchmark": "autocannon -c 100 -d 40 -p 10 http://localhost:3000"
   },
   "dependencies": {

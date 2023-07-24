@@ -20,7 +20,6 @@ To import something dynamically file extension have to be provided. See more [he
 
 ## TODO
 
-- move domain
 - add data and layout improvements to projects
 - work on a11y for projects
 - basic e2e tests

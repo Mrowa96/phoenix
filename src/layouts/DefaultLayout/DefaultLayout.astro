@@ -1,6 +1,7 @@
 ---
 import Header from './Header.astro';
 import Footer, { type Props as FooterProps } from './Footer.astro';
+import { generateUrl } from '../../helpers/generateUrl';
 
 export interface Props {
   title: string;
@@ -69,6 +70,8 @@ const { title, meta, disableHeader, disableFooter, footerBackground } = Astro.pr
     <link rel="icon" href="/favicon-192.png" sizes="192x192" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
     <link rel="icon" href="/favicon.ico" />
+
+    <link rel="canonical" href={generateUrl(Astro.url.pathname, Astro)} />
   </head>
   <body>
     {!disableHeader && <Header />}

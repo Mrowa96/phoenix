@@ -5,13 +5,12 @@ WORKDIR /app
 ENV PORT=3000
 ARG SITE
 
-COPY ["./package.json", "./package-lock.json", "./"]
-
-RUN npm i
-
 COPY . .
 
+RUN npm i
 RUN npm run build
+RUN npm run check:all
+RUN npm run test:ci
 
 FROM nginx:1.25.1-alpine AS runtime
 
