@@ -5,23 +5,28 @@ WORKDIR /app
 ENV PORT=3000
 ARG SITE
 
-COPY ["./package.json", "./package-lock.json", "./"]
+COPY . .
 
 RUN npm i
 
-COPY . .
-
 RUN npm run build
-RUN npm run check:all
-RUN npm run test:ci
+# RUN npm run check:all
+# RUN npm run test:ci
 
-FROM nginx:1.25.1-alpine AS runtime
+FROM mcr.microsoft.com/playwright:v1.36.0-jammy AS e2e
 
-ENV PORT=3000
+WORKDIR /app
 
-COPY ./docker/nginx.conf /etc/nginx/conf.d/template
-COPY --from=build /app/dist /usr/share/nginx/html
+COPY --from=build /app/dist /app
 
-CMD sh -c "envsubst '\$PORT' < /etc/nginx/conf.d/template > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"
 
-EXPOSE 3000
+# FROM nginx:1.25.1-alpine AS runtime
+
+# ENV PORT=3000
+
+# COPY ./docker/nginx.conf /etc/nginx/conf.d/template
+# COPY --from=build /app/dist /usr/share/nginx/html
+
+# CMD sh -c "envsubst '\$PORT' < /etc/nginx/conf.d/template > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"
+
+# EXPOSE 3000

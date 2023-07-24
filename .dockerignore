@@ -1,7 +1,13 @@
+.astro
 .husky
 .git
-.DS_Store
 .vscode
-.gitignore
 dist
 node_modules
+test-results
+playwright-report
+playwright/.cache
+
+.gitignore
+.DS_Store
+README.md

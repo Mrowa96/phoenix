@@ -15,7 +15,8 @@
     "preview": "astro preview",
     "test": "vitest",
     "test:ci": "vitest --run",
-    "check:fmt": "npx prettier -c \"*.{astro,js,ts,json,md,yml}\"",
+    "e2e": "playwright test",
+    "check:fmt": "prettier -c \"*.{astro,js,ts,json,md,yml}\"",
     "check:astro": "astro check",
     "check:types": "tsc --noEmit",
     "check:all": "concurrently \"npm:check:fmt\" \"npm:check:astro\" \"npm:check:types\"",
@@ -31,6 +32,7 @@
   },
   "devDependencies": {
     "@csstools/postcss-global-data": "2.0.0",
+    "@playwright/test": "^1.36.1",
     "@types/lodash": "4.14.195",
     "autocannon": "7.11.0",
     "concurrently": "8.2.0",
