@@ -24,6 +24,7 @@
   "dependencies": {
     "@astrojs/image": "0.17.2",
     "@astrojs/mdx": "0.19.7",
+    "@astrojs/sitemap": "2.0.1",
     "astro": "2.8.5",
     "lodash": "4.17.21",
     "sharp": "0.32.1",
