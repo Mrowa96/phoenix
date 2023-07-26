@@ -22,6 +22,7 @@ To import something dynamically file extension have to be provided. See more [he
 
 - add data and layout improvements to projects
 - work on a11y for projects
+- fix horizontal lines on ios
 - basic e2e tests
 - analize if rem is good unit to use for offsets etc
 - fix reader mode on homepage

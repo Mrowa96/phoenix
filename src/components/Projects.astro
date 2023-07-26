@@ -121,6 +121,7 @@ const projects = await getCollection('projects');
 
         & .title {
           font-size: 1.6rem;
+          font-weight: 500;
           margin: 0;
         }
 
@@ -197,8 +198,8 @@ const projects = await getCollection('projects');
 </style>
 
 <script>
-  import Swiper from 'swiper';
-  import { Navigation, Scrollbar, Keyboard } from 'swiper/modules';
+  import { Swiper } from 'swiper';
+  import { Navigation, Scrollbar } from 'swiper/modules';
   import 'swiper/css';
   import 'swiper/css/navigation';
   import 'swiper/css/scrollbar';
@@ -211,7 +212,7 @@ const projects = await getCollection('projects');
   }
 
   new Swiper('.swiper', {
-    modules: [Navigation, Scrollbar, Keyboard],
+    modules: [Navigation, Scrollbar],
     spaceBetween: 100,
     cssMode: true,
     simulateTouch: false,
@@ -223,9 +224,6 @@ const projects = await getCollection('projects');
     scrollbar: {
       enabled: true,
       el: '.swiper-scrollbar',
-    },
-    keyboard: {
-      enabled: true,
     },
     on: {
       init() {

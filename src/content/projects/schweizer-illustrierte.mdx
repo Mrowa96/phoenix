@@ -1,0 +1,22 @@
+---
+company: Ringier Axel Springer
+url: https://www.schweizer-illustrierte.ch
+title: Schweizer Illustrierte
+lead: News platform focused on people, style and health.
+tags: [Next.js, Apollo]
+mainPhotoName: schweizer-illustrierte
+mainPhotoAlt: Image of Schweizer Illustrierte homepage
+---
+
+import { Picture } from '@astrojs/image/components';
+
+# {frontmatter.title}
+
+<Picture
+  src={import(`../../assets/projects/${frontmatter.mainPhotoName}.png`)}
+  alt={frontmatter.mainPhotoAlt}
+  widths={[500]}
+  width={500}
+/>
+
+## {frontmatter.lead}
