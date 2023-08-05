@@ -46,7 +46,6 @@ const { id, title, color, oppositeColor } = Astro.props;
       width: 100%;
       height: var(--wave-height);
       background: var(--opposite-color);
-      margin-top: -1px; /* Fix for browsers rendering 1px line between svg and div */
 
       & path {
         fill: var(--section-color);
@@ -56,7 +55,11 @@ const { id, title, color, oppositeColor } = Astro.props;
     & .container-wrapper {
       width: 100%;
       background-color: var(--section-color);
-      padding-bottom: 3rem;
+      padding-bottom: 1.5rem;
+
+      @media (--above-medium-viewport) {
+        padding-bottom: 3rem;
+      }
     }
 
     & .heading {

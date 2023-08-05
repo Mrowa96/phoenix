@@ -59,8 +59,8 @@ const projects = (await getCollection('projects')).sort((a, b) => (a.data.id > b
 
 <style>
   .projects-slider {
-    margin: 0 0 1rem;
     border-radius: var(--default-border-radius);
+    margin: 0;
 
     & .project {
       display: flex;
@@ -88,6 +88,7 @@ const projects = (await getCollection('projects')).sort((a, b) => (a.data.id > b
       }
 
       & .details {
+        height: 100%;
         padding: 1rem;
         background: var(--c-white-50);
         border-radius: 0 0 var(--default-border-radius) var(--default-border-radius);
