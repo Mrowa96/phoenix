@@ -1,12 +1,16 @@
 # phoenix
 
-## Requirements
+## Development
 
 1. Node.js + npm. Versions are defined in `./package.json`
 2. `.env.local` file with predefined values
    ```
    SITE=http://localhost:3000
    ```
+
+### Working with git
+
+Projects use `feature`, `fix` and `test` branch prefixes like `feature/add-something-to-project`
 
 ## Troubleshooting
 
