@@ -1,0 +1,28 @@
+---
+type Props = {
+  class?: string;
+  slidesGap?: string;
+};
+
+const { slidesGap, class: className } = Astro.props;
+---
+
+<ul class:list={['slider', className]}>
+  <slot />
+</ul>
+
+<style
+  define:vars={{
+    'slides-gap': slidesGap,
+  }}
+>
+  .slider {
+    display: flex;
+    position: relative;
+    padding: 0;
+    width: 100%;
+    scroll-snap-type: x mandatory;
+    overflow: auto;
+    gap: var(--slides-gap);
+  }
+</style>

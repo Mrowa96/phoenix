@@ -1,0 +1,41 @@
+---
+import { Image } from '@astrojs/image/components';
+import chevronLeftSvg from '../../assets/icons/chevronLeft.svg';
+import chevronRightSvg from '../../assets/icons/chevronRight.svg';
+
+type Props = {
+  class?: string;
+  type: 'prev' | 'next';
+};
+
+const { type, class: className } = Astro.props;
+const buttonTitle = type === 'next' ? 'Go to next slide' : '"Go to previous slide"';
+const iconAlt = type === 'next' ? 'Right arrow' : 'Left arrow';
+const iconSrc = type === 'next' ? chevronRightSvg : chevronLeftSvg;
+---
+
+<button class:list={['slider-button', className]} title={buttonTitle}>
+  <Image src={iconSrc} alt={iconAlt} />
+</button>
+
+<style>
+  .slider-button {
+    appearance: none;
+    cursor: pointer;
+    background: var(--c-white);
+    border: none;
+    border-radius: var(--default-border-radius);
+    transition: opacity 0.3s ease;
+    padding: 0.5rem 0.1rem;
+    display: none;
+
+    &[data-ready='1'] {
+      display: inline-flex;
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+</style>

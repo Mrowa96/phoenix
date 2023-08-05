@@ -2,233 +2,163 @@
 import { Picture, Image } from '@astrojs/image/components';
 import { getCollection } from 'astro:content';
 import WaveSection from './WaveSection.astro';
+import Slider from './Slider/Slider.astro';
+import Slide from './Slider/Slide.astro';
+import SliderButton from './Slider/SliderButton.astro';
 import externalLinkLightSvg from '../assets/icons/externalLinkLight.svg';
-import chevronLeftSvg from '../assets/icons/chevronLeft.svg';
-import chevronRightSvg from '../assets/icons/chevronRight.svg';
 
-const projects = await getCollection('projects');
+const projects = (await getCollection('projects')).sort((a, b) => (a.data.id > b.data.id ? 1 : -1));
 ---
 
 <WaveSection id="projects" title="Projects" color="primary">
-  <button class="swiper-button-prev" title="Go to previous project" slot="heading-slot">
-    <Image src={chevronLeftSvg} alt="Left arrow" />
-  </button>
-  <button class="swiper-button-next" title="Go to next project" slot="heading-slot">
-    <Image src={chevronRightSvg} alt="Right arrow" />
-  </button>
-
-  <div class="wrapper">
-    <div class="swiper swiper-horizontal swiper-css-mode">
-      <ul class="projects swiper-wrapper">
-        {
-          projects.map((project, index) => (
-            <li class="project swiper-slide">
-              <div class="project-content">
-                <div class="image-wrapper">
-                  <Picture
-                    class="image"
-                    src={import(`../assets/projects/${project.data.mainPhotoName}.png`)}
-                    widths={[720, 1440]}
-                    sizes="(max-width: 768px) 100vw, 700px"
-                    formats={['avif', 'webp', 'jpg']}
-                    alt={project.data.mainPhotoAlt}
-                    loading={index === 0 ? 'eager' : 'lazy'}
-                  />
-                </div>
-                <div class="details">
-                  <div class="heading">
-                    <h2 class="title">{project.data.title}</h2>
-                    {project.data.url && (
-                      <a
-                        class="external-link"
-                        href={project.data.url}
-                        target="_blank"
-                        title={`Open ${project.data.title}`}
-                        rel="noopener noreferrer"
-                      >
-                        Open
-                        <Image src={externalLinkLightSvg} alt="External link icon" />
-                      </a>
-                    )}
-                  </div>
-                  <h3 class="lead">{project.data.lead}</h3>
-                  <ul class="tags">
-                    {project.data.tags.map(tag => (
-                      <li class="tag">{tag}</li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            </li>
-          ))
-        }
-      </ul>
-    </div>
-
-    <div class="swiper-scrollbar swiper-scrollbar-horizontal"></div>
-  </div>
+  <SliderButton type="prev" class="projects-button-prev" slot="heading-slot" />
+  <SliderButton type="next" class="projects-button-next" slot="heading-slot" />
+  <Slider slidesGap="1.5rem" class="projects-slider">
+    {
+      projects.map((project, index) => (
+        <Slide class="project">
+          <div class="image-wrapper">
+            <Picture
+              class="image"
+              src={import(`../assets/projects/${project.data.mainPhotoName}.png`)}
+              widths={[720, 1440]}
+              sizes="(max-width: 768px) 100vw, 700px"
+              formats={['avif', 'webp', 'jpg']}
+              alt={project.data.mainPhotoAlt}
+              loading={index === 0 ? 'eager' : 'lazy'}
+            />
+          </div>
+          <div class="details">
+            <div class="heading">
+              <h2 class="title">{project.data.title}</h2>
+              {project.data.url && (
+                <a
+                  class="external-link"
+                  href={project.data.url}
+                  target="_blank"
+                  title={`Open ${project.data.title}`}
+                  rel="noopener noreferrer"
+                >
+                  Open
+                  <Image src={externalLinkLightSvg} alt="External link icon" />
+                </a>
+              )}
+            </div>
+            <h3 class="lead">{project.data.lead}</h3>
+            <ul class="tags">
+              {project.data.tags.map(tag => (
+                <li class="tag">{tag}</li>
+              ))}
+            </ul>
+          </div>
+        </Slide>
+      ))
+    }
+  </Slider>
 </WaveSection>
 
 <style>
-  .wrapper {
-    --swiper-scrollbar-bg-color: rgba(255, 255, 255, 0.2);
-    --swiper-scrollbar-drag-bg-color: rgba(255, 255, 255, 0.8);
-  }
-
-  .projects {
-    padding: 0;
+  .projects-slider {
     margin: 0 0 1rem;
     border-radius: var(--default-border-radius);
 
     & .project {
-      list-style: none;
-    }
-  }
+      display: flex;
+      flex-flow: column;
 
-  .project-content {
-    display: flex;
-    flex-flow: column;
-
-    @media (--above-medium-viewport) {
-      display: grid;
-      grid-template-columns: repeat(10, 1fr);
-    }
-
-    & .image-wrapper {
-      grid-column: 1 / 8;
-
-      & .image {
-        border-radius: var(--default-border-radius);
-        aspect-ratio: 16/9;
-        width: 100%;
-        /* box-shadow: 0 0 4px 0px rgba(0, 0, 0, 0.5); */
+      @media (--large-viewport) {
+        display: grid;
+        grid-template-columns: repeat(10, 1fr);
       }
-    }
 
-    & .details {
-      padding: 1rem 1.5rem;
-      grid-column: 8 / 11;
+      & .image-wrapper {
+        @media (--large-viewport) {
+          grid-column: 1 / 8;
+        }
 
-      @media (width < 1024px) {
+        & .image {
+          border-radius: var(--default-border-radius) var(--default-border-radius) 0 0;
+          aspect-ratio: 16/9;
+          width: 100%;
+
+          @media (--large-viewport) {
+            border-radius: var(--default-border-radius) 0 0 var(--default-border-radius);
+          }
+        }
+      }
+
+      & .details {
         padding: 1rem;
-      }
+        background: var(--c-white-5);
+        border-radius: 0 0 var(--default-border-radius) var(--default-border-radius);
 
-      & .heading {
-        display: flex;
-        align-items: center;
-        margin: 0 0 1rem;
-        gap: 0.75rem;
-
-        & .title {
-          font-size: 1.6rem;
-          font-weight: 500;
-          margin: 0;
+        @media (--large-viewport) {
+          grid-column: 8 / 11;
+          padding: 1.5rem;
+          border-radius: 0 var(--default-border-radius) var(--default-border-radius) 0;
         }
 
-        & .external-link {
+        & .heading {
           display: flex;
+          flex-flow: wrap;
           align-items: center;
-          background: var(--c-primary-dark);
-          border-radius: var(--default-border-radius);
-          padding: 0.2rem 0.4rem;
-          text-decoration: none;
+          margin: 0 0 1rem;
+          gap: 0.75rem;
+
+          & .title {
+            font-size: 1.5rem;
+            font-weight: 500;
+            margin: 0;
+          }
+
+          & .external-link {
+            display: flex;
+            align-items: center;
+            background: var(--c-primary-dark);
+            border-radius: var(--default-border-radius);
+            padding: 0.2rem 0.4rem;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            color: var(--c-white);
+            gap: 0.25rem;
+          }
+        }
+
+        & .lead {
+          font-size: 1rem;
           font-weight: 500;
-          font-size: 0.9rem;
-          color: var(--c-white);
-          gap: 0.25rem;
+          margin: 1rem 0;
+        }
+
+        & .tags {
+          margin: 0;
+          padding: 0;
+          display: flex;
+          flex-wrap: wrap;
+          align-items: center;
+          gap: 1rem;
+
+          & .tag {
+            list-style: none;
+            padding: 0.2rem 0.4rem;
+            border-radius: var(--default-border-radius);
+            background: var(--c-white);
+            font-size: 0.9rem;
+            font-weight: 500;
+          }
         }
       }
-
-      & .lead {
-        font-size: 1rem;
-        font-weight: 500;
-        margin: 1rem 0;
-      }
-
-      & .tags {
-        margin: 0;
-        padding: 0;
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        gap: 1rem;
-
-        & .tag {
-          list-style: none;
-          padding: 0.2rem 0.4rem;
-          border-radius: var(--default-border-radius);
-          background: var(--c-white);
-          font-size: 0.9rem;
-          font-weight: 500;
-        }
-      }
     }
-  }
-
-  .swiper-button-prev,
-  .swiper-button-next {
-    appearance: none;
-    cursor: pointer;
-    background: var(--c-white);
-    border: none;
-    border-radius: var(--default-border-radius);
-    transition: opacity 0.3s ease;
-    position: static;
-    z-index: var(--z-index-1);
-    padding: 0.5rem 0.1rem;
-    margin: 0;
-    width: auto;
-    height: auto;
-    display: none;
-
-    &::after {
-      content: '';
-    }
-
-    &[data-ready='1'] {
-      display: inline-flex;
-    }
-  }
-
-  .swiper-scrollbar.swiper-scrollbar-horizontal {
-    position: static;
-    z-index: var(--z-index-1);
-    width: 100%;
   }
 </style>
 
 <script>
-  import { Swiper } from 'swiper';
-  import { Navigation, Scrollbar } from 'swiper/modules';
-  import 'swiper/css';
-  import 'swiper/css/navigation';
-  import 'swiper/css/scrollbar';
+  import { Slider } from './Slider/Slider';
 
-  const prevButtonElement = document.querySelector<HTMLElement>('.swiper-button-prev');
-  const nextButtonElement = document.querySelector<HTMLElement>('.swiper-button-next');
-
-  if (!prevButtonElement || !nextButtonElement) {
-    throw new Error('Projects has to have buttons defined.');
-  }
-
-  new Swiper('.swiper', {
-    modules: [Navigation, Scrollbar],
-    spaceBetween: 100,
-    cssMode: true,
-    simulateTouch: false,
-    navigation: {
-      enabled: true,
-      prevEl: prevButtonElement,
-      nextEl: nextButtonElement,
-    },
-    scrollbar: {
-      enabled: true,
-      el: '.swiper-scrollbar',
-    },
-    on: {
-      init() {
-        prevButtonElement.dataset.ready = nextButtonElement.dataset.ready = '1';
-      },
-    },
+  new Slider({
+    sliderElement: document.querySelector<HTMLUListElement>('.projects-slider'),
+    prevButtonElement: document.querySelector<HTMLElement>('.projects-button-prev'),
+    nextButtonElement: document.querySelector<HTMLElement>('.projects-button-next'),
   });
 </script>
