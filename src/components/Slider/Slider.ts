@@ -1,7 +1,5 @@
 import throttle from 'lodash/throttle';
 
-// TODO Optimise performance by adding cache
-// TODO Make it public?
 export class Slider {
   #sliderElement: HTMLElement;
 
@@ -68,7 +66,7 @@ export class Slider {
   }
 
   get #slides(): [HTMLElement, ...HTMLElement[]] {
-    const slides = this.#sliderElement.querySelectorAll<HTMLElement>('& > li');
+    const slides = this.#sliderElement.querySelectorAll<HTMLElement>(':scope > li');
 
     if (!slides[0]) {
       throw new Error('There have to be at least one slide in slider.');
@@ -87,7 +85,7 @@ export class Slider {
 
   get slidesGap() {
     const rawValue = getComputedStyle(this.#sliderElement).getPropertyValue('--slides-gap');
-    const value = parseInt(rawValue, 10);
+    const value = parseInt(rawValue);
 
     if (parseInt(rawValue) === Number.NaN) {
       return 0;

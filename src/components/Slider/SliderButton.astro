@@ -9,12 +9,13 @@ type Props = {
 };
 
 const { type, class: className } = Astro.props;
-const buttonTitle = type === 'next' ? 'Go to next slide' : '"Go to previous slide"';
+const buttonTitle = type === 'next' ? 'Go to next slide' : 'Go to previous slide';
+const buttonIsDisabled = type !== 'next';
 const iconAlt = type === 'next' ? 'Right arrow' : 'Left arrow';
 const iconSrc = type === 'next' ? chevronRightSvg : chevronLeftSvg;
 ---
 
-<button class:list={['slider-button', className]} title={buttonTitle}>
+<button class:list={['slider-button', className]} title={buttonTitle} disabled={buttonIsDisabled}>
   <Image src={iconSrc} alt={iconAlt} />
 </button>
 

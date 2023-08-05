@@ -17,12 +17,13 @@ const { slidesGap, class: className } = Astro.props;
   }}
 >
   .slider {
-    display: flex;
     position: relative;
+    display: flex;
+    gap: var(--slides-gap);
     padding: 0;
     width: 100%;
     scroll-snap-type: x mandatory;
-    overflow: auto;
-    gap: var(--slides-gap);
+    overscroll-behavior-x: none;
+    overflow-x: auto;
   }
 </style>
