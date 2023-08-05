@@ -51,10 +51,10 @@ const articles = await getCollection('articles');
         text-decoration: none;
         color: var(--c-black);
         padding: 1rem;
-        background: var(--c-white);
+        background-color: var(--c-white-90);
         box-shadow: 0 0 10px -4px rgba(0, 0, 0, 0.5);
         border-radius: var(--default-border-radius);
-        transition: transform 0.3s ease;
+        transition: background-color 0.3s ease;
 
         @media (width >= 1024px) {
           padding: 1.5rem;
@@ -77,8 +77,10 @@ const articles = await getCollection('articles');
           text-align: right;
         }
 
-        &:hover {
-          transform: translateY(-2px);
+        @media (--non-touch-device) {
+          &:hover {
+            background-color: white;
+          }
         }
       }
     }
