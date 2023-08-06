@@ -45,7 +45,7 @@ const projects = (await getCollection('projects')).sort((a, b) => (a.data.id > b
                 project.data.title
               )}
             </h2>
-            <h3 class="lead line-clamp-2">{project.data.lead}</h3>
+            <h3 class="lead">{project.data.lead}</h3>
             <ul class="tags">
               {project.data.tags.map(tag => (
                 <li class="tag">{tag}</li>
@@ -133,6 +133,14 @@ const projects = (await getCollection('projects')).sort((a, b) => (a.data.id > b
           font-size: 1rem;
           font-weight: 500;
           margin: 0 0 1rem;
+          display: -webkit-box;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+          -webkit-line-clamp: 2;
+
+          @media (--large-viewport) {
+            -webkit-line-clamp: unset;
+          }
         }
 
         & .tags {
