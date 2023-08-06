@@ -52,7 +52,6 @@ const articles = await getCollection('articles');
         color: var(--c-black);
         padding: 1rem;
         background-color: var(--c-white-90);
-        box-shadow: 0 0 10px -4px rgba(0, 0, 0, 0.5);
         border-radius: var(--default-border-radius);
         transition: background-color 0.3s ease;
 
@@ -61,18 +60,20 @@ const articles = await getCollection('articles');
         }
 
         & .heading {
-          font-size: 1.2rem;
+          font-size: 1.3rem;
           font-weight: 500;
           margin: 0 0 1rem;
         }
 
         & .lead {
           font-size: 1rem;
+          font-weight: 500;
           height: calc(1rem * var(--default-line-height) * 2);
         }
 
         & .created-at {
           font-size: 0.8rem;
+          font-weight: 500;
           display: block;
           text-align: right;
         }

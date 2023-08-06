@@ -5,7 +5,7 @@ import WaveSection from './WaveSection.astro';
 import Slider from './Slider/Slider.astro';
 import Slide from './Slider/Slide.astro';
 import SliderButton from './Slider/SliderButton.astro';
-import externalLinkLightSvg from '../assets/icons/externalLinkLight.svg';
+import externalLinkDarkSvg from '../assets/icons/externalLinkDark.svg';
 
 const projects = (await getCollection('projects')).sort((a, b) => (a.data.id > b.data.id ? 1 : -1));
 ---
@@ -29,21 +29,22 @@ const projects = (await getCollection('projects')).sort((a, b) => (a.data.id > b
             />
           </div>
           <div class="details">
-            <div class="heading">
-              <h2 class="title">{project.data.title}</h2>
-              {project.data.url && (
+            <h2 class="heading">
+              {project.data.url ? (
                 <a
                   class="external-link"
                   href={project.data.url}
                   target="_blank"
-                  title={`Open ${project.data.title}`}
+                  title={`Open ${project.data.title} in a new tab`}
                   rel="noopener noreferrer"
                 >
-                  Open
-                  <Image src={externalLinkLightSvg} alt="External link icon" />
+                  <span class="title">{project.data.title}</span>
+                  <Image src={externalLinkDarkSvg} alt="External link icon" />
                 </a>
+              ) : (
+                project.data.title
               )}
-            </div>
+            </h2>
             <h3 class="lead line-clamp-2">{project.data.lead}</h3>
             <ul class="tags">
               {project.data.tags.map(tag => (
@@ -65,10 +66,12 @@ const projects = (await getCollection('projects')).sort((a, b) => (a.data.id > b
     & .project {
       display: flex;
       flex-flow: column;
+      width: 100%;
 
       @media (--large-viewport) {
         display: grid;
         grid-template-columns: repeat(10, 1fr);
+        width: auto;
       }
 
       & .image-wrapper {
@@ -101,31 +104,25 @@ const projects = (await getCollection('projects')).sort((a, b) => (a.data.id > b
 
         & .heading {
           margin: 0 0 1rem;
-
-          & .title {
-            display: inline-block;
-            margin: 0;
-            max-width: calc(100% - 85px);
-            font-size: 1.5rem;
-            font-weight: 500;
-            overflow: hidden;
-            white-space: nowrap;
-            text-overflow: ellipsis;
-            vertical-align: middle;
-          }
+          display: block;
+          font-size: 1.4rem;
+          font-weight: 500;
+          color: var(--c-black);
 
           & .external-link {
-            display: inline-flex;
+            display: flex;
             align-items: center;
-            background: var(--c-primary-dark);
-            border-radius: var(--default-border-radius);
-            padding: 0.2rem 0.4rem;
-            margin: 0 0 0 0.75rem;
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.9rem;
-            color: var(--c-white);
             gap: 0.25rem;
+            text-decoration: none;
+            color: inherit;
+
+            & .title {
+              display: inline-block;
+              max-width: calc(100% - 50px);
+              overflow: hidden;
+              text-overflow: ellipsis;
+              white-space: nowrap;
+            }
           }
         }
 
