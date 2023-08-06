@@ -12,7 +12,14 @@ const { id, title, color, oppositeColor } = Astro.props;
 ---
 
 <section id={id} class="wave-section">
-  <svg class="wave" xmlns="http://www.w3.org/2000/svg">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    class="wave"
+    width="1440"
+    height="70"
+    viewBox="0 0 1440 70"
+    preserveAspectRatio="none"
+  >
     <path
       d="M 450 0 C 275 0 0 52 0 50 V 70 H 1440 V 50 C 1440 50 1320 28 1245 27 C 1100 19 1020 55 875 50 C 710 46 620 0 450 0 Z"
     ></path>
@@ -46,6 +53,8 @@ const { id, title, color, oppositeColor } = Astro.props;
       width: 100%;
       height: var(--wave-height);
       background: var(--opposite-color);
+      /* Hack for empty 1px horizontal line on Safari */
+      transform: translateY(0);
 
       & path {
         fill: var(--section-color);
