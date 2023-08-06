@@ -22,6 +22,11 @@
 
 Projects use `feature`, `fix` and `test` branch prefixes like `feature/add-something-to-project`
 
+## Release
+
+1. `npm version major/minor/patch`
+2. `git push --follow-tags`
+
 ## Troubleshooting
 
 ### Automatic local code checking before commit
