@@ -39,7 +39,7 @@ const projects = (await getCollection('projects')).sort((a, b) => (a.data.id > b
                   rel="noopener noreferrer"
                 >
                   <span class="title">{project.data.title}</span>
-                  <Image src={externalLinkDarkSvg} alt="External link icon" />
+                  <Image class="image" src={externalLinkDarkSvg} alt="External link icon" />
                 </a>
               ) : (
                 project.data.title
@@ -103,25 +103,28 @@ const projects = (await getCollection('projects')).sort((a, b) => (a.data.id > b
         }
 
         & .heading {
-          margin: 0 0 1rem;
-          display: block;
+          margin: 0 0 0.75rem;
           font-size: 1.4rem;
           font-weight: 500;
           color: var(--c-black);
 
           & .external-link {
-            display: flex;
-            align-items: center;
-            gap: 0.25rem;
+            display: inline-block;
             text-decoration: none;
             color: inherit;
 
             & .title {
               display: inline-block;
-              max-width: calc(100% - 50px);
+              max-width: calc(100% - 20px);
               overflow: hidden;
               text-overflow: ellipsis;
               white-space: nowrap;
+              vertical-align: middle;
+              margin-right: 0.25rem;
+            }
+
+            & .image {
+              vertical-align: middle;
             }
           }
         }
@@ -129,7 +132,7 @@ const projects = (await getCollection('projects')).sort((a, b) => (a.data.id > b
         & .lead {
           font-size: 1rem;
           font-weight: 500;
-          margin: 1rem 0;
+          margin: 0 0 1rem;
         }
 
         & .tags {
