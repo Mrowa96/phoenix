@@ -22,25 +22,24 @@
     "benchmark": "autocannon -c 100 -d 40 -p 10 http://localhost:3000"
   },
   "dependencies": {
-    "@astrojs/image": "0.17.2",
+    "@astrojs/image": "0.17.3",
     "@astrojs/mdx": "0.19.7",
     "@astrojs/sitemap": "2.0.1",
-    "astro": "2.8.5",
+    "astro": "2.10.1",
     "lodash": "4.17.21",
-    "sharp": "0.32.1",
-    "swiper": "10.0.4"
+    "sharp": "0.32.4"
   },
   "devDependencies": {
-    "@csstools/postcss-global-data": "2.0.0",
-    "@types/lodash": "4.14.195",
-    "autocannon": "7.11.0",
+    "@csstools/postcss-global-data": "2.0.1",
+    "@types/lodash": "4.14.196",
+    "autocannon": "7.12.0",
     "concurrently": "8.2.0",
     "dotenv": "16.3.1",
     "husky": "8.0.3",
     "postcss-custom-media": "10.0.0",
-    "postcss-nesting": "12.0.0",
+    "postcss-nesting": "12.0.1",
     "prettier": "2.8.8",
     "prettier-plugin-astro": "0.10.0",
-    "vitest": "0.33.0"
+    "vitest": "0.34.1"
   }
 }

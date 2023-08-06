@@ -2,3 +2,5 @@
 @custom-media --medium-viewport (768px <= width < 1024px);
 @custom-media --above-medium-viewport (width >= 768px);
 @custom-media --large-viewport (width >= 1024px);
+@custom-media --non-touch-device (hover: hover) and (pointer: fine);
+@custom-media --touch-device not((hover: hover) or (pointer: fine));

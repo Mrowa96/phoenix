@@ -1,0 +1,16 @@
+---
+const { class: className } = Astro.props;
+---
+
+<li class:list={['slide', className]}>
+  <slot />
+</li>
+
+<style>
+  .slide {
+    flex: 0 0 100%;
+    list-style: none;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+</style>
