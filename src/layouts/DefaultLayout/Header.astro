@@ -5,67 +5,70 @@ import twitterSvg from '../../assets/icons/twitter.svg';
 import linkedinSvg from '../../assets/icons/linkedin.svg';
 import githubSvg from '../../assets/icons/github.svg';
 import mailSvg from '../../assets/icons/mail.svg';
+import Container from '../../components/Container.astro';
 import { parameters } from '../../config';
 ---
 
 <header id="main-header">
-  <div class="homepage-link-wrapper">
-    <a href="/" class="homepage-link" title="Go to homepage">
-      <Image src={homeSvg} alt="Home icon" />
-    </a>
-  </div>
+  <Container>
+    <div class="main-header-content">
+      <div class="homepage-link-wrapper">
+        <a href="/" class="homepage-link" title="Go to homepage">
+          <Image src={homeSvg} alt="Home icon" />
+        </a>
+      </div>
 
-  <nav id="main-nav">
-    <a class="link" href=`/#projects` data-section-id="projects">Projects</a>
-    <a class="link" href=`/#articles` data-section-id="articles">Articles</a>
-  </nav>
+      <nav id="main-nav">
+        <a class="link" href=`/#projects` data-section-id="projects">Projects</a>
+        <a class="link" href=`/#articles` data-section-id="articles">Articles</a>
+      </nav>
 
-  <div class="external-links">
-    <a
-      class="link"
-      href={`mailto:${parameters.personalInfo.mailAddress}`}
-      title="Ask me any question!"
-      rel="noopener noreferrer"
-    >
-      <Image src={mailSvg} alt="Mail icon" />
-    </a>
-    <a
-      class="link"
-      href={parameters.socials.githubUrl}
-      target="_blank"
-      title="Check out my code"
-      rel="noopener noreferrer"
-    >
-      <Image src={githubSvg} alt="Github icon" />
-    </a>
-    <a
-      class="link"
-      href={parameters.socials.twitterUrl}
-      target="_blank"
-      title="Follow me on Twitter"
-      rel="noopener noreferrer"
-    >
-      <Image src={twitterSvg} alt="Twitter icon" />
-    </a>
-    <a
-      class="link"
-      href={parameters.socials.linkedinUrl}
-      target="_blank"
-      title="Get in touch on LinkedIn"
-      rel="noopener noreferrer"
-    >
-      <Image src={linkedinSvg} alt="LinkedIn icon" />
-    </a>
-  </div>
+      <div class="external-links">
+        <a
+          class="link"
+          href={`mailto:${parameters.personalInfo.mailAddress}`}
+          title="Ask me any question!"
+          rel="noopener noreferrer"
+        >
+          <Image src={mailSvg} alt="Mail icon" />
+        </a>
+        <a
+          class="link"
+          href={parameters.socials.githubUrl}
+          target="_blank"
+          title="Check out my code"
+          rel="noopener noreferrer"
+        >
+          <Image src={githubSvg} alt="Github icon" />
+        </a>
+        <a
+          class="link"
+          href={parameters.socials.twitterUrl}
+          target="_blank"
+          title="Follow me on Twitter"
+          rel="noopener noreferrer"
+        >
+          <Image src={twitterSvg} alt="Twitter icon" />
+        </a>
+        <a
+          class="link"
+          href={parameters.socials.linkedinUrl}
+          target="_blank"
+          title="Get in touch on LinkedIn"
+          rel="noopener noreferrer"
+        >
+          <Image src={linkedinSvg} alt="LinkedIn icon" />
+        </a>
+      </div>
+    </div>
+  </Container>
 </header>
 
 <style>
   #main-header {
     --link-padding: 0.25rem;
 
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    padding: 0.5rem var(--default-layout-padding-x);
+    padding: 0.5rem 0;
     position: sticky;
     top: 0;
     background: var(--c-white);
@@ -78,54 +81,59 @@ import { parameters } from '../../config';
       box-shadow: 0px 0px 5px -2px rgba(0, 0, 0, 0.5);
     }
 
-    @media (--above-medium-viewport) {
-      grid-template-columns: repeat(3, 1fr);
-    }
-
-    & .homepage-link-wrapper {
-      display: flex;
-
-      & .homepage-link {
-        text-decoration: none;
-        color: var(--c-black);
-        display: inline-flex;
-        padding: var(--link-padding) 0;
-        align-items: center;
-        font-weight: 500;
-        font-size: 1.5rem;
-      }
-    }
-
-    & #main-nav {
-      margin: auto;
-      display: none;
-      gap: 0.25rem;
+    & .main-header-content {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
 
       @media (--above-medium-viewport) {
-        display: flex;
+        grid-template-columns: repeat(3, 1fr);
       }
 
-      & .link {
-        text-decoration: none;
-        color: var(--c-black);
-        padding: var(--link-padding);
-        font-weight: 500;
+      & .homepage-link-wrapper {
+        display: flex;
 
-        &:hover {
-          text-decoration: underline;
+        & .homepage-link {
+          text-decoration: none;
+          color: var(--c-black);
+          display: inline-flex;
+          padding: var(--link-padding) 0;
+          align-items: center;
+          font-weight: 500;
+          font-size: 1.5rem;
         }
       }
-    }
 
-    & .external-links {
-      margin: auto 0;
-      display: flex;
-      justify-content: end;
-      gap: 0.6rem;
+      & #main-nav {
+        margin: auto;
+        display: none;
+        gap: 0.25rem;
 
-      & .link {
-        display: inline-flex;
-        padding: var(--link-padding) 0;
+        @media (--above-medium-viewport) {
+          display: flex;
+        }
+
+        & .link {
+          text-decoration: none;
+          color: var(--c-black);
+          padding: var(--link-padding);
+          font-weight: 500;
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+
+      & .external-links {
+        margin: auto 0;
+        display: flex;
+        justify-content: end;
+        gap: 0.6rem;
+
+        & .link {
+          display: inline-flex;
+          padding: var(--link-padding) 0;
+        }
       }
     }
   }

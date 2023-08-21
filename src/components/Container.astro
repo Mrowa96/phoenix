@@ -1,0 +1,35 @@
+---
+type Props = {
+  type?: 'default' | 'narrow';
+};
+
+const { type = 'default' } = Astro.props;
+---
+
+<div class="container">
+  <slot />
+</div>
+
+<style
+  define:vars={{
+    'custom-large-container': type === 'default' ? 'var(--large-container)' : 'var(--medium-container)',
+  }}
+>
+  .container {
+    --container-width: 100%;
+
+    @media (--medium-viewport) {
+      --container-width: var(--medium-container);
+    }
+
+    @media (--large-viewport) {
+      --container-width: var(--custom-large-container);
+    }
+
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: var(--default-padding-x);
+    padding-right: var(--default-padding-x);
+    width: var(--container-width);
+  }
+</style>
