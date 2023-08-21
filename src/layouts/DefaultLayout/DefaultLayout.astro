@@ -71,7 +71,7 @@ const { title, meta, disableHeader, disableFooter, footerBackground } = Astro.pr
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
     <link rel="icon" href="/favicon.ico" />
 
-    <link rel="canonical" href={generateUrl(Astro.url.pathname, Astro)} />
+    <link rel="canonical" href={generateUrl(Astro.url.pathname, Astro.site)} />
     <link rel="sitemap" href="/sitemap-index.xml" />
   </head>
   <body>
@@ -87,7 +87,7 @@ const { title, meta, disableHeader, disableFooter, footerBackground } = Astro.pr
 
 <style is:global>
   :root {
-    --default-layout-padding-x: 1.5rem;
+    --default-padding-x: 1.5rem;
     --default-border-radius: 8px;
     --default-line-height: 1.2;
 
@@ -105,6 +105,10 @@ const { title, meta, disableHeader, disableFooter, footerBackground } = Astro.pr
     --z-index-1: 1;
     --z-index-2: 2;
     --z-index-3: 3;
+
+    --small-container: 320px;
+    --medium-container: 768px;
+    --large-container: 1024px;
   }
 
   *,
@@ -129,7 +133,7 @@ const { title, meta, disableHeader, disableFooter, footerBackground } = Astro.pr
     margin: 0;
     padding: 0;
     min-height: 100%;
-    min-width: 320px;
+    min-width: var(--small-container);
   }
 
   main {

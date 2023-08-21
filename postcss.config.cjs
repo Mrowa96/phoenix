@@ -5,7 +5,7 @@ const postcssNesting = require('postcss-nesting');
 module.exports = {
   plugins: [
     postcssGlobalData({
-      files: ['./src/styles/media.css'],
+      files: ['./src/layouts/DefaultLayout/media.css'],
     }),
     postcssCustomMedia(),
     postcssNesting(),

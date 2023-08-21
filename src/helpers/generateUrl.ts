@@ -1,7 +1,7 @@
 import type { AstroGlobal } from 'astro';
 
-export function generateUrl(pathname: string, { site }: AstroGlobal) {
-  if (!site) {
+export function generateUrl(pathname: string, siteUrl?: AstroGlobal['site']) {
+  if (!siteUrl) {
     throw new Error('Site config option has to be defined.');
   }
 
@@ -11,5 +11,5 @@ export function generateUrl(pathname: string, { site }: AstroGlobal) {
     preparedPathname = preparedPathname.substring(1);
   }
 
-  return `${site}${preparedPathname}`;
+  return `${siteUrl}${preparedPathname}`;
 }
