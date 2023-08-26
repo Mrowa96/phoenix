@@ -1,6 +1,7 @@
 ---
 import { getCollection, type CollectionEntry } from 'astro:content';
 import ArticleLayout from '../../layouts/ArticleLayout.astro';
+import { getFormattedDateTime } from '../../helpers/dateOrTime';
 
 type Props = {
   article: CollectionEntry<'articles'>;
@@ -21,4 +22,42 @@ export async function getStaticPaths() {
 
 <ArticleLayout title={article.data.title} lead={article.data.lead}>
   <Content />
+
+  <div class="article-summary">
+    <hr />
+    <div class="item">
+      <strong class="name">Created:</strong>
+      <time datetime={article.data.createdAt.toISOString()}>
+        {getFormattedDateTime(article.data.createdAt)}
+      </time>
+    </div>
+    <div class="item">
+      <strong class="name">Updated:</strong>
+      <time datetime={article.data.updatedAt.toISOString()}>
+        {getFormattedDateTime(article.data.updatedAt)}
+      </time>
+    </div>
+  </div>
 </ArticleLayout>
+
+<style>
+  .article-summary {
+    margin: 1rem 0;
+
+    hr {
+      width: 40px;
+      border-top: 2px solid var(--c-black);
+      margin: 0 0 0.8rem;
+    }
+
+    & .item {
+      margin: 0.3rem 0;
+      font-size: 1rem;
+
+      & .name {
+        margin: 0 5px 0 0;
+        font-weight: 500;
+      }
+    }
+  }
+</style>
