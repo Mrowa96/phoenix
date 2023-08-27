@@ -23,8 +23,6 @@ export default defineConfig({
   markdown: {
     gfm: true,
     smartypants: false,
-    shikiConfig: {
-      theme: 'vitesse-light',
-    },
+    syntaxHighlight: 'prism',
   },
 });

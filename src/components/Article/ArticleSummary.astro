@@ -1,0 +1,49 @@
+---
+import { getFormattedDateTime } from '../../helpers/dateOrTime';
+
+type Props = {
+  createdAt: string;
+  updatedAt: string;
+};
+
+const createdAt = new Date(Astro.props.createdAt);
+const updatedAt = new Date(Astro.props.updatedAt);
+---
+
+<div class="article-summary">
+  <hr />
+  <div class="item">
+    <strong class="name">Created:</strong>
+    <time datetime={createdAt.toISOString()}>
+      {getFormattedDateTime(createdAt)}
+    </time>
+  </div>
+  <div class="item">
+    <strong class="name">Updated:</strong>
+    <time datetime={updatedAt.toISOString()}>
+      {getFormattedDateTime(updatedAt)}
+    </time>
+  </div>
+</div>
+
+<style>
+  .article-summary {
+    hr {
+      border: none;
+      border-radius: 8px;
+      background: var(--c-black);
+      height: 2px;
+      margin: 0 0 0.8rem;
+    }
+
+    & .item {
+      margin: 0.3rem 0;
+      font-size: 1rem;
+
+      & .name {
+        margin: 0 5px 0 0;
+        font-weight: 500;
+      }
+    }
+  }
+</style>

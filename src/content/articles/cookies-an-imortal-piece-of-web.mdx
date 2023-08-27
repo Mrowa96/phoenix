@@ -6,8 +6,10 @@ createdAt: 2021-01-21T23:04:00.000Z
 updatedAt: 2023-08-26T18:18:00.000Z
 ---
 
-import ArticleHeading from '../../components/ArticleHeading.astro';
-import ArticleExternalLink from '../../components/ArticleExternalLink.astro';
+import ArticleHeading from '../../components/Article/ArticleHeading.astro';
+import ArticleExternalLink from '../../components/Article/ArticleExternalLink.astro';
+import ArticleReferences from '../../components/Article/ArticleReferences.astro';
+import ArticleSummary from '../../components/Article/ArticleSummary.astro';
 
 <ArticleHeading title={frontmatter.title} />
 
@@ -53,11 +55,11 @@ const response = {
   },
   headers: {
     Connection: 'keep-alive',
-    Content-length: 20,
-    "Set-cookie": 'rodoStatus=accepted; Max-Age=31536000; Domain=test.com; Path=/;',
-    "Set-cookie": 'uid=xxx; HttpOnly;'
-  }
-}
+    'Content-length': 20,
+    'Set-cookie': 'rodoStatus=accepted; Max-Age=31536000; Domain=test.com; Path=/;',
+    'Set-cookie': 'uid=xxx; HttpOnly;',
+  },
+};
 ```
 
 As you can see, request cookies don't have any attributes declared,
@@ -163,14 +165,21 @@ So, developers have to include some libraries like <ArticleExternalLink href="ht
 But there is a light in a tunnel - <ArticleExternalLink href="https://wicg.github.io/cookie-store/" title="Cookie Store API" /> created by Google and implemented since Chrome 87.
 Sadly other browsers vendors aren't open for implementation yet.
 
-### References
+<ArticleReferences
+  references={[
+    {
+      href: 'https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies',
+      title: 'Cookies basics on MDN',
+    },
+    {
+      href: 'https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cookie',
+      title: 'Cookie header on MDN',
+    },
+    {
+      href: 'https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie',
+      title: 'Set-Cookie header on MDN',
+    },
+  ]}
+/>
 
-- <ArticleExternalLink href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies" title="Cookies basics on MDN" />
-- <ArticleExternalLink
-    href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cookie"
-    title="Cookie header on MDN"
-  />
-- <ArticleExternalLink
-    href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie"
-    title="Set-Cookie header on MDN"
-  />
+<ArticleSummary createdAt={frontmatter.createdAt} updatedAt={frontmatter.updatedAt} />

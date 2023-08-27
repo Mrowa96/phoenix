@@ -1,6 +1,7 @@
 ---
 import DefaultLayout from './DefaultLayout/DefaultLayout.astro';
 import Container from '../components/Container.astro';
+import 'prismjs/themes/prism-tomorrow.min.css';
 
 type Props = {
   title: string;
@@ -20,9 +21,12 @@ const { title, lead } = Astro.props;
 
 <style is:global>
   .article-content {
-    & a {
-      color: var(--c-black);
-    }
+    --c-title-border-color: var(--c-grey-300);
+    --c-content-code-background: var(--c-grey-200);
+
+    color: var(--c-black);
+    padding: 2rem 0;
+    line-height: var(--increased-line-height);
 
     & h1,
     & h2,
@@ -31,6 +35,44 @@ const { title, lead } = Astro.props;
     & h5,
     & h6 {
       font-weight: 500;
+    }
+
+    & h1 {
+      font-size: 1.8rem;
+    }
+
+    & ul,
+    & ol {
+      margin: 1rem 0;
+
+      & li {
+        margin: 0 0 0.4rem;
+      }
+    }
+
+    & a {
+      color: var(--c-black);
+      text-underline-offset: 2px;
+    }
+
+    & code {
+      border-radius: var(--default-border-radius);
+      /* display: inline-flex;
+      margin: 0 0 1px;
+      max-width: 100%;
+      overflow: auto;
+      padding: 0 8px; */
+    }
+    /* 
+    & code[class*='language-'] {
+      display: block;
+      margin: 0;
+      max-width: unset;
+      padding: 0;
+    } */
+
+    & pre {
+      border-radius: var(--default-border-radius);
     }
   }
 </style>

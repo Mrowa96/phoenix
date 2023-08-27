@@ -6,8 +6,10 @@ createdAt: 2020-11-29T00:21:00.000Z
 updatedAt: 2023-08-26T18:25:00.000Z
 ---
 
-import ArticleHeading from '../../components/ArticleHeading.astro';
-import ArticleExternalLink from '../../components/ArticleExternalLink.astro';
+import ArticleHeading from '../../components/Article/ArticleHeading.astro';
+import ArticleExternalLink from '../../components/Article/ArticleExternalLink.astro';
+import ArticleReferences from '../../components/Article/ArticleReferences.astro';
+import ArticleSummary from '../../components/Article/ArticleSummary.astro';
 
 <ArticleHeading title={frontmatter.title} />
 
@@ -149,21 +151,25 @@ variable = 1;
 set.has(object); // -> false
 ```
 
-#### References
+<ArticleReferences
+  references={[
+    {
+      href: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map',
+      title: 'Map on MDN',
+    },
+    {
+      href: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set',
+      title: 'Set on MDN',
+    },
+    {
+      href: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakSet',
+      title: 'WeakSet on MDN',
+    },
+    {
+      href: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap',
+      title: 'WeakMap on MDN',
+    },
+  ]}
+/>
 
-- <ArticleExternalLink
-    href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map"
-    title="Map on MDN"
-  />
-- <ArticleExternalLink
-    href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set"
-    title="Set on MDN"
-  />
-- <ArticleExternalLink
-    href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakSet"
-    title="WeakSet on MDN"
-  />
-- <ArticleExternalLink
-    href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap"
-    title="WeakMap on MDN"
-  />
+<ArticleSummary createdAt={frontmatter.createdAt} updatedAt={frontmatter.updatedAt} />
