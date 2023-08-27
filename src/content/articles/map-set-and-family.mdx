@@ -6,12 +6,12 @@ createdAt: 2020-11-29T00:21:00.000Z
 updatedAt: 2023-08-26T18:25:00.000Z
 ---
 
-import ArticleHeading from '../../components/Article/ArticleHeading.astro';
-import ArticleExternalLink from '../../components/Article/ArticleExternalLink.astro';
-import ArticleReferences from '../../components/Article/ArticleReferences.astro';
-import ArticleSummary from '../../components/Article/ArticleSummary.astro';
+import Heading from '../../components/Article/Heading.astro';
+import ExternalLink from '../../components/Article/ExternalLink.astro';
+import References from '../../components/Article/References.astro';
+import Summary from '../../components/Article/Summary.astro';
 
-<ArticleHeading title={frontmatter.title} />
+<Heading title={frontmatter.title} />
 
 **{frontmatter.lead}**
 
@@ -151,7 +151,7 @@ variable = 1;
 set.has(object); // -> false
 ```
 
-<ArticleReferences
+<References
   references={[
     {
       href: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map',
@@ -172,4 +172,4 @@ set.has(object); // -> false
   ]}
 />
 
-<ArticleSummary createdAt={frontmatter.createdAt} updatedAt={frontmatter.updatedAt} />
+<Summary createdAt={frontmatter.createdAt} updatedAt={frontmatter.updatedAt} />

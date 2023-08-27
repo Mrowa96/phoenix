@@ -1,5 +1,5 @@
 ---
-import ArticleExternalLink from './ArticleExternalLink.astro';
+import ExternalLink from './ExternalLink.astro';
 
 type Props = {
   references: {
@@ -18,7 +18,7 @@ const { references } = Astro.props;
     {
       references.map(reference => (
         <li>
-          <ArticleExternalLink href={reference.href} title={reference.title} />
+          <ExternalLink href={reference.href} title={reference.title} />
         </li>
       ))
     }

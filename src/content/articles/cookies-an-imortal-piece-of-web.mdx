@@ -6,12 +6,12 @@ createdAt: 2021-01-21T23:04:00.000Z
 updatedAt: 2023-08-26T18:18:00.000Z
 ---
 
-import ArticleHeading from '../../components/Article/ArticleHeading.astro';
-import ArticleExternalLink from '../../components/Article/ArticleExternalLink.astro';
-import ArticleReferences from '../../components/Article/ArticleReferences.astro';
-import ArticleSummary from '../../components/Article/ArticleSummary.astro';
+import Heading from '../../components/Article/Heading.astro';
+import ExternalLink from '../../components/Article/ExternalLink.astro';
+import References from '../../components/Article/References.astro';
+import Summary from '../../components/Article/Summary.astro';
 
-<ArticleHeading title={frontmatter.title} />
+<Heading title={frontmatter.title} />
 
 **{frontmatter.lead}**
 
@@ -84,7 +84,7 @@ Each and every cookie might have additional attributes:
   but it's still send with requests made with e.g. `fetch()`.
 - **SameSite** - it accepts three values - Strict, Lax (default in most browsers) and None.
   It's very complex topic which won't be covered in this article.
-  If you want to know more here is a <ArticleExternalLink href="https://web.dev/samesite-cookies-explained/" title="great article" /> which should explain everything.
+  If you want to know more here is a <ExternalLink href="https://web.dev/samesite-cookies-explained/" title="great article" /> which should explain everything.
 
 ## When you should use cookie?
 
@@ -141,18 +141,18 @@ Currently, all browsers are making cookies implementations more strict. Some exa
 
 - In 2020 default value of _SameSite_ attribute was set to _Lax_. Previously it was set to _None_.
   It will be perfectly fine if browsers unified implementations, which they didn't and in each browser _SameSite_ attribute behaves differently.
-  If you are interested in this topic, this <ArticleExternalLink href="https://www.thinktecture.com/en/identity/samesite/samesite-in-a-nutshell/#the-chrome-vs-safari-issue" title="article" /> is very thorough.
+  If you are interested in this topic, this <ExternalLink href="https://www.thinktecture.com/en/identity/samesite/samesite-in-a-nutshell/#the-chrome-vs-safari-issue" title="article" /> is very thorough.
 - In private windows, browsers usually block third-party cookies, so your web app might behave differently there.
 - Safari and their ITP (Intelligent Tracking Prevention) might remove cookie after just 1 day,
   even when their _Expires/Max-Age_ attribute points to further date.
-  More about that you can read in this <ArticleExternalLink href="https://www.convert.com/blog/privacy/itp-2-2-impact-abtesting-users/" title="article" />.
-- Firefox with <ArticleExternalLink href="https://blog.mozilla.org/blog/2019/06/04/firefox-now-available-with-enhanced-tracking-protection-by-default/" title="Enhanced Tracking Protection" /> might also block various cookies,
+  More about that you can read in this <ExternalLink href="https://www.convert.com/blog/privacy/itp-2-2-impact-abtesting-users/" title="article" />.
+- Firefox with <ExternalLink href="https://blog.mozilla.org/blog/2019/06/04/firefox-now-available-with-enhanced-tracking-protection-by-default/" title="Enhanced Tracking Protection" /> might also block various cookies,
   but mostly third-party tracking ones as default.
 
 ### Max cookie size
 
 Cookies are restricted in their size and quantity.
-Most browsers allow for 50 cookies per domain, 4096 bytes per cookie, 3000 cookies in total based on <ArticleExternalLink href="https://datatracker.ietf.org/doc/rfc6265/?include_text=1" title="RFC 6265" />.
+Most browsers allow for 50 cookies per domain, 4096 bytes per cookie, 3000 cookies in total based on <ExternalLink href="https://datatracker.ietf.org/doc/rfc6265/?include_text=1" title="RFC 6265" />.
 
 ### Outdated JavaScript API
 
@@ -160,12 +160,12 @@ As you might see API for cookie manipulation in the browser is a bit... inaccess
 
 Setting a new cookie is fairly easy - `document.cookie = "uuid=xxx; SameSite=Strict; Secure;"`, but nightmare comes when we need to get cookie value by name.
 It is not possible at the moment out of the box, because `document.cookie` will return all available cookies in one string.
-So, developers have to include some libraries like <ArticleExternalLink href="https://www.npmjs.com/package/js-cookie" title="js-cookie" /> or write their own helper for that in **every** project.
+So, developers have to include some libraries like <ExternalLink href="https://www.npmjs.com/package/js-cookie" title="js-cookie" /> or write their own helper for that in **every** project.
 
-But there is a light in a tunnel - <ArticleExternalLink href="https://wicg.github.io/cookie-store/" title="Cookie Store API" /> created by Google and implemented since Chrome 87.
+But there is a light in a tunnel - <ExternalLink href="https://wicg.github.io/cookie-store/" title="Cookie Store API" /> created by Google and implemented since Chrome 87.
 Sadly other browsers vendors aren't open for implementation yet.
 
-<ArticleReferences
+<References
   references={[
     {
       href: 'https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies',
@@ -182,4 +182,4 @@ Sadly other browsers vendors aren't open for implementation yet.
   ]}
 />
 
-<ArticleSummary createdAt={frontmatter.createdAt} updatedAt={frontmatter.updatedAt} />
+<Summary createdAt={frontmatter.createdAt} updatedAt={frontmatter.updatedAt} />
