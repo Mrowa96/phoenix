@@ -14,10 +14,11 @@
     "preview": "TZ=UTC astro preview",
     "test": "TZ=UTC vitest",
     "test:ci": "TZ=UTC vitest --run",
-    "check:fmt": "npx prettier -c \"*.{astro,js,ts,json,md,yml}\"",
+    "check:fmt": "prettier -c \"*.{astro,js,ts,json,md,yml}\"",
     "check:astro": "astro check",
     "check:types": "tsc --noEmit",
-    "check:all": "concurrently \"npm:check:fmt\" \"npm:check:astro\" \"npm:check:types\"",
+    "check:html": "html-validator dist --ignore=\"Trailing slash on void elements\"",
+    "check:all": "concurrently -g --timings \"npm:check:fmt\" \"npm:check:astro\" \"npm:check:types\" \"npm:check:html\"",
     "benchmark": "autocannon -c 100 -d 40 -p 10 http://localhost:3000"
   },
   "dependencies": {
@@ -40,6 +41,7 @@
     "postcss-nesting": "12.0.1",
     "prettier": "2.8.8",
     "prettier-plugin-astro": "0.10.0",
-    "vitest": "0.34.3"
+    "vitest": "0.34.3",
+    "w3c-html-validator": "1.4.0"
   }
 }

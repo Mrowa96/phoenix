@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-npx concurrently "npm run test:ci" "npm run check:fmt" "npm run check:astro" "npm run check:types"
-# npm run test:ci && npm run check:fmt && npm run check:astro && npm run check:types
+npm run check:all
+npm run test:ci
