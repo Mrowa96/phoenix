@@ -3,16 +3,23 @@ id: 1
 title: Map, Set and family
 lead: Those data types are often forgotten, but they could be quite useful.
 createdAt: 2020-11-29T00:21:00.000Z
-updatedAt: 2020-11-29T00:21:00.000Z
+updatedAt: 2023-08-26T18:25:00.000Z
 ---
 
-# {frontmatter.title}
+import ArticleHeading from '../../components/Article/ArticleHeading.astro';
+import ArticleExternalLink from '../../components/Article/ArticleExternalLink.astro';
+import ArticleReferences from '../../components/Article/ArticleReferences.astro';
+import ArticleSummary from '../../components/Article/ArticleSummary.astro';
+
+<ArticleHeading title={frontmatter.title} />
 
 **{frontmatter.lead}**
 
 ## Map
 
-_Map_ can be used as replacement of plain _object_. It does offer more functional approach for manipulating data stored in _Map_ instance and it really fits when we want to store data as <span style="text-decoration: underline;">associative array</span>. Check out example below:
+_Map_ can be used as replacement of plain _object_.
+It does offer more functional approach for manipulating data stored in _Map_ instance and it really fits when we want to store data as **associative array**.
+Check out example below:
 
 ```js
 const map = new Map();
@@ -35,7 +42,8 @@ map.set(objectKey, 5);
 map.get(objectKey); // -> 5
 ```
 
-_Map_ can also be iterated like arrays (using Map `forEach` function or standard `for ... of` loop), where plain _object_ is a bit harder to iterate, because _it_ may have not enumerable properties.
+_Map_ can also be iterated like arrays (using Map `forEach` function or standard `for ... of` loop),
+where plain _object_ is a bit harder to iterate, because _it_ may have not enumerable properties.
 
 ```js
 map.set('a', 'a');
@@ -44,7 +52,8 @@ map.set('b', 'b');
 map.forEach((value, key) => console.log(key, value)); // -> 'a a', 'b b'
 ```
 
-But _Map_ also have their own "qualities" which may be problematic for some use cases. For example _Map_ cannot be serialized, so using it with `JSON.stringify` won't work.
+But _Map_ also have their own "qualities" which may be problematic for some use cases.
+For example _Map_ cannot be serialized, so using it with `JSON.stringify` won't work.
 
 ```js
 map.set('a', 'a');
@@ -52,7 +61,8 @@ map.set('a', 'a');
 JSON.stringify(map); // -> {}
 ```
 
-There is a way to serialize Map, but it require to create special function called `replacer` and pass it as a second argument to `JSON.stringify`. Example below:
+There is a way to serialize Map, but it require to create special function called `replacer` and pass it as a second argument to `JSON.stringify`.
+Example below:
 
 ```js
 const map = new Map();
@@ -80,7 +90,8 @@ JSON.stringify(map); // -> {"a": "a", "b": "b"}
 
 ## Set
 
-_Set_ is simpler data type, more similar to _array_ than object. Similarly to _Map_ it uses more functional interface for data manipulation and it's great when we want to create _array_ with <span style="text-decoration: underline;">unique values</span> only, because it won't allow duplicates.
+_Set_ is simpler data type, more similar to _array_ than object.
+Similarly to _Map_ it uses more functional interface for data manipulation and it's great when we want to create _array_ with **unique values** only, because it won't allow duplicates.
 
 ```js
 const set = new Set();
@@ -97,11 +108,13 @@ Unfortunately, situation with serialization of _Set_ is the same as with _Map_.
 
 ## WeakMap & WeakSet
 
-Both of data typescan be used when we want to store data temporarily and give browser permission to clean unused data by _GC_ when key (in case of WeakMap) or value (WeakSet) won't be referenced by anything else. So it's only useful when we want to store data as long as we need it.
+Both of data typescan be used when we want to store data temporarily and give browser permission to clean unused data by _GC_ when key (in case of WeakMap) or value (WeakSet) won't be referenced by anything else.
+So it's only useful when we want to store data as long as we need it.
 
 ### WeakMap
 
-_WeakMap_ can only have keys created from plain _object_ and it doesn't have methods to check size or iterate over _WeakMap_. But it's possible to get value by key.
+_WeakMap_ can only have keys created from plain _object_ and it doesn't have methods to check size or iterate over _WeakMap_.
+But it's possible to get value by key.
 
 ```js
 const object = {};
@@ -120,7 +133,8 @@ map.has(object); // -> false
 
 ### WeakSet
 
-_WeakSet_ can only store _objects_ and it doesn't provide methods to get stored data or check size. It's possible only to check if value exists in _WeakSet_.
+_WeakSet_ can only store _objects_ and it doesn't provide methods to get stored data or check size.
+It's possible only to check if value exists in _WeakSet_.
 
 ```js
 const object = {};
@@ -137,9 +151,25 @@ variable = 1;
 set.has(object); // -> false
 ```
 
-#### References
+<ArticleReferences
+  references={[
+    {
+      href: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map',
+      title: 'Map on MDN',
+    },
+    {
+      href: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set',
+      title: 'Set on MDN',
+    },
+    {
+      href: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakSet',
+      title: 'WeakSet on MDN',
+    },
+    {
+      href: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap',
+      title: 'WeakMap on MDN',
+    },
+  ]}
+/>
 
-- [Map on MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map)
-- [Set on MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set)
-- [WeakSet on MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakSet)
-- [WeakMap on MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap)
+<ArticleSummary createdAt={frontmatter.createdAt} updatedAt={frontmatter.updatedAt} />

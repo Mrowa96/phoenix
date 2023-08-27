@@ -3,24 +3,33 @@ id: 3
 title: Cookies - an immortal piece of Web
 lead: Cookies are still a great idea for many use cases, so let me reintroduce them.
 createdAt: 2021-01-21T23:04:00.000Z
-updatedAt: 2021-01-21T23:04:00.000Z
+updatedAt: 2023-08-26T18:18:00.000Z
 ---
 
-import ArticleHeading from '../../components/ArticleHeading.astro';
+import ArticleHeading from '../../components/Article/ArticleHeading.astro';
+import ArticleExternalLink from '../../components/Article/ArticleExternalLink.astro';
+import ArticleReferences from '../../components/Article/ArticleReferences.astro';
+import ArticleSummary from '../../components/Article/ArticleSummary.astro';
 
 <ArticleHeading title={frontmatter.title} />
 
 **{frontmatter.lead}**
 
-After _localStorage_ was implemented in major browsers, I often saw that it was used as a replacement of plain old cookies. Even though developers had to handle e.g. expiration implementation on they own.
+After _localStorage_ was implemented in major browsers, I often saw that it was used as a replacement of plain old cookies.
+Even though developers had to handle e.g. expiration implementation on they own.
 
-Don't get me wrong, I'm very fond of _localStorage_ and I'm using it on daily basis, but cookies are also very useful and even more suited to some use cases.
+Don't get me wrong, I'm very fond of _localStorage_ and I'm using it on daily basis,
+but cookies are also very useful and even more suited to some use cases.
 
 ## What is a cookie?
 
-But let's start from the beginning and explain what cookie is. Cookie is **stored information**. It consists of _Name_, _Value_ and additional attributes like _Expires_, _Domain_, _Path_ and more.
+But let's start from the beginning and explain what cookie is.
+Cookie is **stored information**. It consists of _Name_, _Value_ and additional attributes like _Expires_, _Domain_, _Path_ and more.
 
-It is attached to the http request (client -> server) and response (server -> client) in form of header(s). Requests use **Cookie** header where all cookies are transferred. Responses on the other hand use multiple **Set-cookie** headers (one per cookie). Let me visualise it to you in a form of plain objects:
+It is attached to the http request (client -> server) and response (server -> client) in form of header(s).
+Requests use **Cookie** header where all cookies are transferred.
+Responses on the other hand use multiple **Set-cookie** headers (one per cookie).
+Let me visualise it to you in a form of plain objects:
 
 ### Request
 
@@ -46,34 +55,44 @@ const response = {
   },
   headers: {
     Connection: 'keep-alive',
-    Content-length: 20,
-    "Set-cookie": 'rodoStatus=accepted; Max-Age=31536000; Domain=test.com; Path=/;',
-    "Set-cookie": 'uid=xxx; HttpOnly;'
-  }
-}
+    'Content-length': 20,
+    'Set-cookie': 'rodoStatus=accepted; Max-Age=31536000; Domain=test.com; Path=/;',
+    'Set-cookie': 'uid=xxx; HttpOnly;',
+  },
+};
 ```
 
-As you can see, request cookies don't have any attributes declared, because they are only important for a sender (client), not for a receiver (server).
+As you can see, request cookies don't have any attributes declared,
+because they are only important for a sender (client), not for a receiver (server).
 
 ## Cookies might be "customized"
 
-Before I describe use cases I have mentioned at the beginning, I want to do quick introduction to cookies attributes, because without knowledge about them it might be hard to understand cookies potential.
+Before I describe use cases I have mentioned at the beginning, I want to do quick introduction to cookies attributes,
+because without knowledge about them it might be hard to understand cookies potential.
 
 Each and every cookie might have additional attributes:
 
-- **Domain** - it tells browser in which domain cookie has to be visible. Cookie with domain set to test.com, will be accessible only in pages under test.com domain. Sometimes is handy to make cookie available in subdomains. To do that, domain attribute has to be prefixed with a dot like .test.com.
-- **Path** - it points browser under what path cookie will be available. Cookie with path set to /page, will be accessible under /page and /page subpaths like /page/2 etc.
+- **Domain** - it tells browser in which domain cookie has to be visible.
+  Cookie with domain set to test.com, will be accessible only in pages under test.com domain. Sometimes is handy to make cookie available in subdomains.
+  To do that, domain attribute has to be prefixed with a dot like .test.com.
+- **Path** - it points browser under what path cookie will be available.
+  Cookie with path set to /page, will be accessible under /page and /page subpaths like /page/2 etc.
 - **Expires** - it declares date and time until when cookie will exist. After that, it will be automatically deleted.
 - **Max-Age** - it behaves similar to Expires attribute, but instead of date and time it uses number of seconds for how long cookie will exist.
 - **Secure** - it prevents cookie from being send to the server on other than _https_ protocol when declared.
-- **HttpOnly** - it limits visibility of cookie. If declared, it's not possible to access cookie value through `document.cookie`, but it's still send with requests made with e.g. `fetch()`.
-- **SameSite** - it accepts three values - Strict, Lax (default in most browsers) and None. It's very complex topic which won't be covered in this article. If you want to know more here is a [great article](https://web.dev/samesite-cookies-explained/) which should explain everything.
+- **HttpOnly** - it limits visibility of cookie. If declared, it's not possible to access cookie value through `document.cookie`,
+  but it's still send with requests made with e.g. `fetch()`.
+- **SameSite** - it accepts three values - Strict, Lax (default in most browsers) and None.
+  It's very complex topic which won't be covered in this article.
+  If you want to know more here is a <ArticleExternalLink href="https://web.dev/samesite-cookies-explained/" title="great article" /> which should explain everything.
 
 ## When you should use cookie?
 
 ### Automatic expiration
 
-When you want to store some information for "forever", _localStorage_ is a match. But if you want to store data only for, let's say - 7 days, it might be problematic, because you will have to add some kind of _expires_ property and check it with `setInterval` and after each page load.
+When you want to store some information for "forever", _localStorage_ is a match.
+But if you want to store data only for, let's say - 7 days, it might be problematic,
+because you will have to add some kind of _expires_ property and check it with `setInterval` and after each page load.
 
 Cookies for a rescue! Just set _Expires_ attribute and you don't need to worry about it any more.
 
@@ -83,11 +102,13 @@ document.cookie = 'uid=xxx; Max-Age=604800'; // 60 * 60 * 24 * 7 - 7 days
 
 ### Share data implicitly
 
-If you know, that specific piece of data should be transferred between a client and a server, it might be good idea to use a cookie, because every cookie will be automatically attached to a request and all cookies returned in a response will be saved without any manual work.
+If you know, that specific piece of data should be transferred between a client and a server, it might be good idea to use a cookie,
+because every cookie will be automatically attached to a request and all cookies returned in a response will be saved without any manual work.
 
 ### Hide data from a client
 
-Sometimes there is a need to store some information, but it shouldn't be available via JavaScript e.g. access token. Cookies are great for that. Just use HttpOnly attribute and that's it.
+Sometimes there is a need to store some information, but it shouldn't be available via JavaScript e.g. access token.
+Cookies are great for that. Just use HttpOnly attribute and that's it.
 
 ```js
 document.cookie = 'at=xxx; HttpOnly;';
@@ -96,15 +117,19 @@ console.log(document.cookie); // returns ""
 
 ### Access data from a server
 
-Let me show you real world example. When you want to implement dark theme on your website, you have to store chose theme somehow. And based on this stored value you will add _theme-dark_ or _theme-light_ class to `<body>`.
+Let me show you real world example. When you want to implement dark theme on your website, you have to store chose theme somehow.
+And based on this stored value you will add _theme-dark_ or _theme-light_ class to `<body>`.
 
-You might store value with `localStorage.setItem("theme", "dark")` after user toggle theme switcher. And after page load get value to `<body>` with
+You might store value with `localStorage.setItem("theme", "dark")` after user toggle theme switcher.
+And after page load get value to `<body>` with
 
 ```js
 document.body.classList.add(`theme-${localStorage.getItem('theme')}`);
 ```
 
-But one problem could come up, especially for users with slower devices. For a moment, between DOM render and script execution there will be small time window, where `<body>` won't have any class (or it will have default one). And because of that, user might see flickering effect.
+But one problem could come up, especially for users with slower devices.
+For a moment, between DOM render and script execution there will be small time window, where `<body>` won't have any class (or it will have default one).
+And because of that, user might see flickering effect.
 
 Fortunately, cookies are also suited for this job, because you can access them on a server and set the right theme before page will be rendered by the browser.
 
@@ -114,25 +139,47 @@ Fortunately, cookies are also suited for this job, because you can access them o
 
 Currently, all browsers are making cookies implementations more strict. Some examples below:
 
-- In 2020 default value of _SameSite_ attribute was set to _Lax_. Previously it was set to _None_. It will be perfectly fine if browsers unified implementations, which they didn't and in each browser _SameSite_ attribute behaves differently. If you are interested in this topic, this [article](https://www.thinktecture.com/en/identity/samesite/samesite-in-a-nutshell/#the-chrome-vs-safari-issue) is very thorough.
+- In 2020 default value of _SameSite_ attribute was set to _Lax_. Previously it was set to _None_.
+  It will be perfectly fine if browsers unified implementations, which they didn't and in each browser _SameSite_ attribute behaves differently.
+  If you are interested in this topic, this <ArticleExternalLink href="https://www.thinktecture.com/en/identity/samesite/samesite-in-a-nutshell/#the-chrome-vs-safari-issue" title="article" /> is very thorough.
 - In private windows, browsers usually block third-party cookies, so your web app might behave differently there.
-- Safari and their ITP (Intelligent Tracking Prevention) might remove cookie after just 1 day, even when their _Expires/Max-Age_ attribute points to further date. More about that you can read in this [article](https://www.convert.com/blog/privacy/itp-2-2-impact-abtesting-users/).
-- Firefox with ETP ([Enhanced Tracking Protection](https://blog.mozilla.org/blog/2019/06/04/firefox-now-available-with-enhanced-tracking-protection-by-default/)) might also block various cookies, but mostly third-party tracking ones as default.
+- Safari and their ITP (Intelligent Tracking Prevention) might remove cookie after just 1 day,
+  even when their _Expires/Max-Age_ attribute points to further date.
+  More about that you can read in this <ArticleExternalLink href="https://www.convert.com/blog/privacy/itp-2-2-impact-abtesting-users/" title="article" />.
+- Firefox with <ArticleExternalLink href="https://blog.mozilla.org/blog/2019/06/04/firefox-now-available-with-enhanced-tracking-protection-by-default/" title="Enhanced Tracking Protection" /> might also block various cookies,
+  but mostly third-party tracking ones as default.
 
 ### Max cookie size
 
-Cookies are restricted in their size and quantity. Most browsers allow for 50 cookies per domain, 4096 bytes per cookie, 3000 cookies in total based on [RFC 6265](https://datatracker.ietf.org/doc/rfc6265/?include_text=1).
+Cookies are restricted in their size and quantity.
+Most browsers allow for 50 cookies per domain, 4096 bytes per cookie, 3000 cookies in total based on <ArticleExternalLink href="https://datatracker.ietf.org/doc/rfc6265/?include_text=1" title="RFC 6265" />.
 
 ### Outdated JavaScript API
 
 As you might see API for cookie manipulation in the browser is a bit... inaccessible.
 
-Setting a new cookie is fairly easy - `document.cookie = "uuid=xxx; SameSite=Strict; Secure;"`, but nightmare comes when we need to get cookie value by name. It is not possible at the moment out of the box, because `document.cookie` will return all available cookies in one string. So, developers have to include some libraries like [js-cookie](https://www.npmjs.com/package/js-cookie) or write their own helper for that in **every** project.
+Setting a new cookie is fairly easy - `document.cookie = "uuid=xxx; SameSite=Strict; Secure;"`, but nightmare comes when we need to get cookie value by name.
+It is not possible at the moment out of the box, because `document.cookie` will return all available cookies in one string.
+So, developers have to include some libraries like <ArticleExternalLink href="https://www.npmjs.com/package/js-cookie" title="js-cookie" /> or write their own helper for that in **every** project.
 
-But there is a light in a tunnel - [Cookie Store API](https://wicg.github.io/cookie-store/) created by Google and implemented since Chrome 87. Sadly other browsers vendors aren't open for implementation yet.
+But there is a light in a tunnel - <ArticleExternalLink href="https://wicg.github.io/cookie-store/" title="Cookie Store API" /> created by Google and implemented since Chrome 87.
+Sadly other browsers vendors aren't open for implementation yet.
 
-### References
+<ArticleReferences
+  references={[
+    {
+      href: 'https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies',
+      title: 'Cookies basics on MDN',
+    },
+    {
+      href: 'https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cookie',
+      title: 'Cookie header on MDN',
+    },
+    {
+      href: 'https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie',
+      title: 'Set-Cookie header on MDN',
+    },
+  ]}
+/>
 
-- [Cookies basics on MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies)
-- [Cookie header on MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cookie)
-- [Set-Cookie header on MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie)
+<ArticleSummary createdAt={frontmatter.createdAt} updatedAt={frontmatter.updatedAt} />

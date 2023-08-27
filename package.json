@@ -8,38 +8,40 @@
   },
   "engineStrict": true,
   "scripts": {
-    "dev": "astro dev",
-    "start": "astro dev",
-    "build": "astro build",
+    "start": "TZ=UTC astro dev",
+    "build": "TZ=UTC astro build",
     "build:preview": "npm run build && npm run preview",
-    "preview": "astro preview",
-    "test": "vitest",
-    "test:ci": "vitest --run",
-    "check:fmt": "npx prettier -c \"*.{astro,js,ts,json,md,yml}\"",
+    "preview": "TZ=UTC astro preview",
+    "test": "TZ=UTC vitest",
+    "test:ci": "TZ=UTC vitest --run",
+    "check:fmt": "prettier -c \"*.{astro,js,ts,json,md,yml}\"",
     "check:astro": "astro check",
     "check:types": "tsc --noEmit",
-    "check:all": "concurrently \"npm:check:fmt\" \"npm:check:astro\" \"npm:check:types\"",
+    "check:html": "html-validator dist --ignore=\"Trailing slash on void elements\"",
+    "check:all": "concurrently -g --timings \"npm:check:fmt\" \"npm:check:astro\" \"npm:check:types\" \"npm:check:html\"",
     "benchmark": "autocannon -c 100 -d 40 -p 10 http://localhost:3000"
   },
   "dependencies": {
     "@astrojs/image": "0.17.3",
     "@astrojs/mdx": "0.19.7",
     "@astrojs/sitemap": "2.0.2",
-    "astro": "2.10.12",
+    "astro": "2.10.14",
     "lodash": "4.17.21",
+    "prismjs": "1.29.0",
     "sharp": "0.32.5"
   },
   "devDependencies": {
     "@csstools/postcss-global-data": "2.0.1",
     "@types/lodash": "4.14.197",
     "autocannon": "7.12.0",
-    "concurrently": "8.2.0",
+    "concurrently": "8.2.1",
     "dotenv": "16.3.1",
     "husky": "8.0.3",
     "postcss-custom-media": "10.0.0",
     "postcss-nesting": "12.0.1",
     "prettier": "2.8.8",
     "prettier-plugin-astro": "0.10.0",
-    "vitest": "0.34.2"
+    "vitest": "0.34.3",
+    "w3c-html-validator": "1.4.0"
   }
 }
