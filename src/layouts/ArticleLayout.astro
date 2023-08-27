@@ -28,6 +28,15 @@ const { title, lead } = Astro.props;
     padding: 2rem 0;
     line-height: var(--increased-line-height);
 
+    & p {
+      font-weight: 400;
+      margin: 1rem 0;
+    }
+
+    & strong {
+      font-weight: 500;
+    }
+
     & h1,
     & h2,
     & h3,
@@ -35,6 +44,7 @@ const { title, lead } = Astro.props;
     & h5,
     & h6 {
       font-weight: 500;
+      margin: 1rem 0;
     }
 
     & h1 {
@@ -55,24 +65,14 @@ const { title, lead } = Astro.props;
       text-underline-offset: 2px;
     }
 
-    & code {
+    & pre[class*='language-'] {
+      margin: 1rem 0;
       border-radius: var(--default-border-radius);
-      /* display: inline-flex;
-      margin: 0 0 1px;
-      max-width: 100%;
-      overflow: auto;
-      padding: 0 8px; */
     }
-    /* 
-    & code[class*='language-'] {
-      display: block;
-      margin: 0;
-      max-width: unset;
-      padding: 0;
-    } */
 
-    & pre {
-      border-radius: var(--default-border-radius);
+    & code:not([class*='language-']) {
+      font-family: 'Quicksand', monospace;
+      font-weight: 500;
     }
   }
 </style>
