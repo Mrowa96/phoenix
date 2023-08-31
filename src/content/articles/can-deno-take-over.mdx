@@ -1,0 +1,98 @@
+---
+id: 4
+title: Can Deno take over Node.js?
+lead: Node.js ecosystem struggles with many pain points especially with developer experience area. Is Deno a solution?
+createdAt: 2023-08-23T14:09:00.000Z
+updatedAt: 2023-08-23T14:09:00.000Z
+---
+
+import { Picture } from '@astrojs/image/components';
+import Heading from '../../components/Article/Heading.astro';
+import ExternalLink from '../../components/Article/ExternalLink.astro';
+import References from '../../components/Article/References.astro';
+import Summary from '../../components/Article/Summary.astro';
+import testExampleImage from '../../assets/content/can-deno-take-over/testExample.jpeg';
+
+<Heading title={frontmatter.title} />
+
+**{frontmatter.lead}**
+
+## Why Deno?
+
+According to creators, Deno _"aims to be a productive and secure scripting environment for the modern programmer"_.
+So from very beggining they underline how developer experience and security are important for them.
+
+And personally, I think they have a point. Today, to start project in Node.js most of us probably have to configure:
+
+- linter e.g. eslint
+- formatter e.g. prettier
+- typescript
+- testing environment
+
+And that's minimum. Setting up all this things, to work with each other and maintain it later on can be quite frustrating.
+
+Let me give you example I had last week. I created project with Node.js and TypeScript and I wanted it to execute locally via CLI.
+I decided to not add build step and just execute TypeScript file by <ExternalLink href="https://typestrong.org/ts-node/" title="ts-node" />.
+How big was my suprise when I found out that `ts-node` is not maintained for over a year now!
+
+Ok, so what could I do? Use <ExternalLink href="https://swc.rs" title="swc" />. But! To do that I had to install another dependency and add configuration file.
+This was enough for me, I decided to try new kid on the block who promises to solve all issues.
+
+Is it any good?
+
+### Code formatting
+
+By default Deno comes with command <ExternalLink href="https://deno.land/manual/tools/formatter" title="deno fmt" /> and default config.
+
+Config is of course opinionated, but we can change it in `deno.json`.
+Unfortunately options are quite limited in comparision to `prettier`.
+We cannot decide if we want to have trailing commas or not, how our arrow function parentheses should look like and few more.
+
+Ignoring files defined in .gitignore is also not respected and formatting other file types like e.g. html, yml is also not possible.
+
+Is it a problem? For me not much, because basics like line width or auto inserting semicolons are implemented,
+but for sure it can be an issue for some and it would be great if Deno will consider to add more options.
+
+_TODO Check github issues for that_
+
+### Linters
+
+Very similar story to code formatting.
+At the time of writing Deno provide us with <ExternalLink href="https://lint.deno.land/?q=&all=on" title="97 rules" /> which cannot be extended by any plugins.
+Even some basics like `no-console` from `eslint` are missing, so it definetly needs some more work.
+
+But is it enought for now? Well it's for developers to decide.
+It's open source project so everybody can contribute by creatings PR in <ExternalLink href="https://github.com/denoland/deno_lint/issues" title="deno_lint repo" />.
+
+### Testing
+
+In this aspect it's much better. They provide `jest` style of behavioral testing functions like `describe`, `it` etc.,
+quite a few assertions and mocking functions for modules, functions and time.
+And all of that without single line of config by default! That's something refreshing.
+
+In terms of performance I didn't test it with many test cases, but for small project I created output from `deno test` looks like this:
+
+<Picture
+  src={testExampleImage}
+  alt="Result of 'deno test' command showing how much time each test case took - 65ms in total."
+  widths={[512]}
+  width={478}
+  formats={['avif', 'webp', 'jpg']}
+/>
+
+We can also test using parallel mode, with result like this:
+TODO
+
+https://deno.com/blog/node-config-hell
+
+## TypeScript support
+
+Obvious...
+
+## Packages
+
+## Performance
+
+## Community
+
+<Summary createdAt={frontmatter.createdAt} updatedAt={frontmatter.updatedAt} />
