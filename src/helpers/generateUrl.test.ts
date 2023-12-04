@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { generateUrl } from './generateUrl';
 
-const baseUrl = 'http://localhost:3000';
+const baseUrl = 'http://localhost:4321';
 
 describe('generateUrl', () => {
   it.each([

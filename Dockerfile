@@ -1,15 +1,18 @@
 ARG RUNTIME_ENV
 
 # BUILD
-FROM node:18.16.1-alpine3.18 AS build
+FROM node:20.10.0-alpine3.17 AS build
 
 ARG SITE
 
 WORKDIR /app
 
-COPY . .
+COPY package*.json ./
 
 RUN npm i
+
+COPY . .
+
 RUN npm run build
 RUN npm run check:all
 RUN npm run test:ci
@@ -37,8 +40,8 @@ COPY --from=build /app/dist /usr/share/nginx/html
 # RUNTIME
 FROM runtime-${RUNTIME_ENV} AS runtime
 
-ENV PORT=3000
+ENV PORT=4321
 
 CMD sh -c "envsubst '\$PORT' < /etc/nginx/conf.d/template > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"
 
-EXPOSE 3000
+EXPOSE 4321
