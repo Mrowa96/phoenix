@@ -1,5 +1,5 @@
 ---
-import { Picture, Image } from '@astrojs/image/components';
+import { Picture, Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
 import WaveSection from './WaveSection.astro';
 import Slider from './Slider/Slider.astro';
@@ -83,6 +83,7 @@ const projects = (await getCollection('projects')).sort((a, b) => (a.data.id > b
           border-radius: var(--default-border-radius) var(--default-border-radius) 0 0;
           aspect-ratio: 16/9;
           width: 100%;
+          height: auto;
 
           @media (--large-viewport) {
             border-radius: var(--default-border-radius) 0 0 var(--default-border-radius);
