@@ -7,12 +7,9 @@ ARG SITE
 
 WORKDIR /app
 
-COPY package*.json ./
-
-RUN npm i
-
 COPY . .
 
+RUN npm i
 RUN npm run build
 RUN npm run check:all
 RUN npm run test:ci
