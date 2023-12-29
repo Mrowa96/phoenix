@@ -1,0 +1,7 @@
+{
+  "ignoredRules": [
+    "Trailing slash on void elements has no effect and interacts badly with unquoted attribute values.",
+    "Attribute “is:raw” is not serializable as XML 1.0.",
+    "Attribute “is:raw” not allowed on element “code” at this point."
+  ]
+}
