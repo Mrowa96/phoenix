@@ -5,10 +5,9 @@ const projectsCollection = defineCollection({
   schema: z.object({
     id: z.number(),
     title: z.string(),
-    company: z.string(),
     lead: z.string(),
     tags: z.array(z.string()),
-    url: z.string().url().optional(),
+    url: z.string().url().nullable().optional(),
     mainPhotoName: z.string(),
     mainPhotoAlt: z.string(),
   }),
