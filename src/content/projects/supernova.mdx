@@ -1,0 +1,22 @@
+---
+id: 8
+title: Supernova
+url: https://www.supernova.io/
+lead: Manage, document and share your design systems
+tags: [Next.js, Typescript, Storybook]
+mainPhotoName: supernova
+mainPhotoAlt: Image of homepage from Supernova app
+---
+
+import { Picture } from 'astro:assets';
+
+# {frontmatter.title}
+
+<Picture
+  src={import(`../../assets/projects/${frontmatter.mainPhotoName}.png`)}
+  alt={frontmatter.mainPhotoAlt}
+  widths={[500]}
+  width={500}
+/>
+
+## {frontmatter.lead}

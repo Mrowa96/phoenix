@@ -1,0 +1,21 @@
+---
+id: 7
+title: Dieto
+lead: Contentful app about diets and nutrition.
+tags: [Next.js, Storybook, JSON:API]
+mainPhotoName: dieto
+mainPhotoAlt: Image of homepage from Dieto app
+---
+
+import { Picture } from 'astro:assets';
+
+# {frontmatter.title}
+
+<Picture
+  src={import(`../../assets/projects/${frontmatter.mainPhotoName}.png`)}
+  alt={frontmatter.mainPhotoAlt}
+  widths={[500]}
+  width={500}
+/>
+
+## {frontmatter.lead}
