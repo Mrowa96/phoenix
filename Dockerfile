@@ -1,7 +1,7 @@
 ARG RUNTIME_ENV
 
 # BUILD
-FROM node:20.10.0-alpine3.17 AS build
+FROM node:20.14.0-alpine3.19 AS build
 
 ARG SITE
 
@@ -16,7 +16,7 @@ RUN npm run test:ci
 RUN sed -i "s@<SITE>@${SITE}@g" ./dist/robots.txt
 
 # RUNTIME STAGE
-FROM nginx:1.25.1-alpine AS runtime-stage
+FROM nginx:1.27.0-alpine3.19 AS runtime-stage
 
 ARG AUTH_LOGIN
 ARG AUTH_PASSWORD
@@ -29,7 +29,7 @@ RUN sed -i "s@AUTH_LOGIN@${AUTH_LOGIN}@g" /etc/nginx/.htpasswd && \
     sed -i "s@AUTH_PASSWORD@${AUTH_PASSWORD}@g" /etc/nginx/.htpasswd
 
 # RUNTIME PRODUCTION
-FROM nginx:1.25.1-alpine AS runtime-production
+FROM nginx:1.27.0-alpine3.19 AS runtime-production
 
 COPY ./docker/nginx-production.conf /etc/nginx/conf.d/template
 COPY --from=build /app/dist /usr/share/nginx/html
