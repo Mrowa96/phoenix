@@ -33,5 +33,3 @@ Run `npx husky install` to install husky which will check code on pre-commit hoo
 ### Dynamic imports
 
 To import something dynamically file extension have to be provided. See more [here](https://github.com/withastro/astro/issues/3373)
-
-test
