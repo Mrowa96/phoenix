@@ -15,10 +15,6 @@
 
 `RUNTIME_ENV` can accept two values: `production` and `stage`. Difference is that `stage` have enabled basic auth.
 
-### Working with git
-
-Projects use `feature`, `fix` and `test` branch prefixes like `feature/add-something-to-project`
-
 ## Release
 
 1. `npm version major/minor/patch`
