@@ -4,7 +4,7 @@ import Footer, { type Props as FooterProps } from './Footer.astro';
 import { generateUrl } from '../../helpers/generateUrl';
 
 export interface Props {
-  title: string;
+  title?: string;
   meta?: {
     twitter?: {
       title: string;
@@ -24,7 +24,7 @@ const { title, meta, disableHeader, disableFooter, footerBackground } = Astro.pr
   <head>
     <meta charset="UTF-8" />
 
-    <title>Paweł Mrowiec - {title}</title>
+    <title>{title ? `Paweł Mrowiec - ${title}` : 'Paweł Mrowiec'}</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="format-detection" content="telephone=no" />
@@ -49,10 +49,10 @@ const { title, meta, disableHeader, disableFooter, footerBackground } = Astro.pr
       }
     </style>
 
-    <meta name="description" content="Paweł Mrowiec's portfolio, articles and contact information." />
+    <meta name="description" content="Personal website of developer specialised in web technologies." />
     <meta
       name="keywords"
-      content="paweł mrowiec,tavoite,it,php,javascript,nodejs,deno,html,css,symfony,react,nextjs,linux,dev,frontend,backend,fullstack,freelance,freelancer"
+      content="paweł mrowiec,pawel mrowiec,tavoite,it,php,javascript,js,typescript,ts,node,nodejs,deno,html,css,symfony,react,nextjs,linux,dev,frontend,backend,fullstack,freelance,freelancer"
     />
     {
       meta?.twitter && (
